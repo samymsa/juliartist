@@ -4,7 +4,7 @@ import '@picocss/pico';
 import { NavComponent } from './nav/nav.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-root, [app-root]',
   standalone: true,
   imports: [RouterOutlet, NavComponent],
   templateUrl: './app.component.html',
