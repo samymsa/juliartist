@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
 
 @Component({
-  selector: 'app-nav',
+  selector: 'app-navbar',
   standalone: true,
   imports: [ThemeSwitcherComponent],
-  templateUrl: './nav.component.html',
+  templateUrl: './navbar.component.html',
 })
-export class NavComponent {
+export class NavbarComponent {
 
 }
