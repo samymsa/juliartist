@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { User } from '../user';
 
 @Component({
   selector: 'app-user-form',
@@ -15,15 +16,11 @@ export class UserFormComponent {
     'F': 'Madame',
     'O': 'Autre'
   }
-  honorificPrefix = '';
-  familyName = '';
-  givenName = '';
-  streetAddress = '';
-  postalCode = '';
-  city = '';
-  email = '';
-  tel = '';
-  username = '';
-  password = '';
-  passwordConfirm = '';
+
+  @Input() model = new User();
+  @Output() submit = new EventEmitter<User>();
+
+  onSubmit() {
+    this.submit.emit(this.model);
+  }
 }

@@ -1,7 +1,14 @@
-<main class="container">
+<main class="container-fluid">
   <div class="grid">
     <article>
-      <app-user-form></app-user-form>
+      <app-user-form [model]="model"></app-user-form>
+    </article>
+    <article>
+      <hgroup>
+        <h2>Vos informations</h2>
+        <p>Vous avez saisi les informations suivantes :</p>
+      </hgroup>
+      <app-user-data [model]="model"></app-user-data>
     </article>
   </div>
 </main>

@@ -1,35 +1,35 @@
 <form id="register-form" action="" method="get">
-  <select id="honorific-prefix" aria-label="Civilité" name="honorific-prefix" required [(ngModel)]="honorificPrefix">
+  <select id="honorific-prefix" aria-label="Civilité" name="honorific-prefix" required
+    [(ngModel)]="model.honorificPrefix">
     <option *ngFor="let prefix of honorificPrefixes | keyvalue" [value]="prefix.key">{{prefix.value}}</option>
   </select>
   <div class="grid">
     <input type="text" id="family-name" aria-label="Nom" placeholder="Nom" autocomplete="family-name" name="family-name"
-      required [(ngModel)]="familyName">
+      required [(ngModel)]="model.familyName">
     <input type="text" id="given-name" aria-label="Prénom" placeholder="Prénom" autocomplete="given-name"
-      name="given-name" required [(ngModel)]="givenName">
+      name="given-name" required [(ngModel)]="model.givenName">
   </div>
   <input type="text" id="street-address" aria-label="Adresse" placeholder="Adresse" autocomplete="street-address"
-    name="street-address" [(ngModel)]="streetAddress">
+    name="street-address" [(ngModel)]="model.streetAddress">
   <div class="grid">
     <input type="text" id="postal-code" aria-label="Code Postal" placeholder="Code Postal" autocomplete="postal-code"
-      name="postal-code" [(ngModel)]="postalCode">
+      name="postal-code" [(ngModel)]="model.postalCode">
     <input type="text" id="city" aria-label="Ville" placeholder="Ville" autocomplete="address-level2" name="city"
-      [(ngModel)]="city">
+      [(ngModel)]="model.city">
   </div>
   <div class="grid">
     <input type="email" id="email" aria-label="Adresse Email" placeholder="Adresse Email" autocomplete="email"
-      name="email" required [(ngModel)]="email">
+      name="email" required [(ngModel)]="model.email">
     <input type="tel" id="tel" aria-label="Téléphone" placeholder="Téléphone" autocomplete="tel" name="tel"
-      [(ngModel)]="tel">
+      [(ngModel)]="model.tel">
   </div>
   <input type="text" id="username" aria-label="Nom d'utilisateur" placeholder="Nom d'utilisateur"
-    autocomplete="username" name="username" required [(ngModel)]="username">
+    autocomplete="username" name="username" required [(ngModel)]="model.username">
   <div class="grid">
     <input type="password" id="password" aria-label="Mot de passe" placeholder="Mot de passe"
-      autocomplete="new-password" name="password" required [(ngModel)]="password">
+      autocomplete="new-password" name="password" required [(ngModel)]="model.password">
     <input type="password" id="password-confirm" aria-label="Confirmer le mot de passe"
-      placeholder="Confirmer le mot de passe" autocomplete="new-password" name="password-confirm" required
-      [(ngModel)]="passwordConfirm">
+      placeholder="Confirmer le mot de passe" autocomplete="new-password" name="password-confirm" required>
   </div>
   <button type="submit">Envoyer</button>
 </form>
