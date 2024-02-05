@@ -1,7 +1,10 @@
 <main class="container-fluid">
   <div class="grid">
     <article>
-      <app-user-form [(model)]="model" (submit)="onUserFormSubmit($event)"></app-user-form>
+      <app-user-form
+        [(model)]="model"
+        (submit)="onUserFormSubmit($event)"
+      ></app-user-form>
     </article>
     <article>
       <hgroup>
@@ -14,12 +17,10 @@
 </main>
 <app-modal [title]="'Félicitations ! ✨'" [(isOpen)]="isModalOpen">
   <p>
-    Votre compte a été créé avec succès.
-    Vous pouvez maintenant profiter de toutes les fonctionnalités de notre plateforme.
+    Votre compte a été créé avec succès. Vous pouvez maintenant profiter de
+    toutes les fonctionnalités de notre plateforme.
   </p>
   <p>
-    <small>
-      <em>Note : </em>Le formulaire a été réinitialisé.
-    </small>
+    <small> <em>Note : </em>Le formulaire a été réinitialisé. </small>
   </p>
 </app-modal>

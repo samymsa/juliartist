@@ -1,35 +1,150 @@
-<form id="register-form" action="" method="get" (ngSubmit)="onSubmit()" #registerForm="ngForm">
-  <select id="honorific-prefix" aria-label="Civilité" name="honorific-prefix" required
-    [(ngModel)]="model.honorificPrefix" #honorificPrefix="ngModel" attr.aria-invalid="{{honorificPrefix.touched ? honorificPrefix.invalid : null}}">
-    <option *ngFor="let prefix of honorificPrefixes | keyvalue" [value]="prefix.key">{{prefix.value}}</option>
+<form
+  id="register-form"
+  action=""
+  method="get"
+  (ngSubmit)="onSubmit()"
+  #registerForm="ngForm"
+>
+  <select
+    id="honorific-prefix"
+    aria-label="Civilité"
+    name="honorific-prefix"
+    required
+    [(ngModel)]="model.honorificPrefix"
+    #honorificPrefix="ngModel"
+    attr.aria-invalid="{{
+      honorificPrefix.touched ? honorificPrefix.invalid : null
+    }}"
+  >
+    <option
+      *ngFor="let prefix of honorificPrefixes | keyvalue"
+      [value]="prefix.key"
+    >
+      {{ prefix.value }}
+    </option>
   </select>
   <div class="grid">
-    <input type="text" id="family-name" aria-label="Nom" placeholder="Nom" autocomplete="family-name" name="family-name"
-      required [(ngModel)]="model.familyName" #familyName="ngModel" attr.aria-invalid="{{familyName.touched ? familyName.invalid : null}}">
-    <input type="text" id="given-name" aria-label="Prénom" placeholder="Prénom" autocomplete="given-name"
-      name="given-name" required [(ngModel)]="model.givenName" #givenName="ngModel" attr.aria-invalid="{{givenName.touched ? givenName.invalid : null}}">
+    <input
+      type="text"
+      id="family-name"
+      aria-label="Nom"
+      placeholder="Nom"
+      autocomplete="family-name"
+      name="family-name"
+      required
+      [(ngModel)]="model.familyName"
+      #familyName="ngModel"
+      attr.aria-invalid="{{ familyName.touched ? familyName.invalid : null }}"
+    />
+    <input
+      type="text"
+      id="given-name"
+      aria-label="Prénom"
+      placeholder="Prénom"
+      autocomplete="given-name"
+      name="given-name"
+      required
+      [(ngModel)]="model.givenName"
+      #givenName="ngModel"
+      attr.aria-invalid="{{ givenName.touched ? givenName.invalid : null }}"
+    />
   </div>
-  <input type="text" id="street-address" aria-label="Adresse" placeholder="Adresse" autocomplete="street-address"
-    name="street-address" [(ngModel)]="model.streetAddress" #streetAddress="ngModel" attr.aria-invalid="{{streetAddress.touched ? streetAddress.invalid : null}}">
+  <input
+    type="text"
+    id="street-address"
+    aria-label="Adresse"
+    placeholder="Adresse"
+    autocomplete="street-address"
+    name="street-address"
+    [(ngModel)]="model.streetAddress"
+    #streetAddress="ngModel"
+    attr.aria-invalid="{{
+      streetAddress.touched ? streetAddress.invalid : null
+    }}"
+  />
   <div class="grid">
-    <input type="text" id="postal-code" aria-label="Code Postal" placeholder="Code Postal" autocomplete="postal-code"
-      name="postal-code" [(ngModel)]="model.postalCode" #postalCode="ngModel" attr.aria-invalid="{{postalCode.touched ? postalCode.invalid : null}}">
-    <input type="text" id="city" aria-label="Ville" placeholder="Ville" autocomplete="address-level2" name="city"
-      [(ngModel)]="model.city" #city="ngModel" attr.aria-invalid="{{city.touched ? city.invalid : null}}">
+    <input
+      type="text"
+      id="postal-code"
+      aria-label="Code Postal"
+      placeholder="Code Postal"
+      autocomplete="postal-code"
+      name="postal-code"
+      [(ngModel)]="model.postalCode"
+      #postalCode="ngModel"
+      attr.aria-invalid="{{ postalCode.touched ? postalCode.invalid : null }}"
+    />
+    <input
+      type="text"
+      id="city"
+      aria-label="Ville"
+      placeholder="Ville"
+      autocomplete="address-level2"
+      name="city"
+      [(ngModel)]="model.city"
+      #city="ngModel"
+      attr.aria-invalid="{{ city.touched ? city.invalid : null }}"
+    />
   </div>
   <div class="grid">
-    <input type="email" id="email" aria-label="Adresse Email" placeholder="Adresse Email" autocomplete="email"
-      name="email" required [(ngModel)]="model.email" #email="ngModel" attr.aria-invalid="{{email.touched ? email.invalid : null}}">
-    <input type="tel" id="tel" aria-label="Téléphone" placeholder="Téléphone" autocomplete="tel" name="tel"
-      [(ngModel)]="model.tel" #tel="ngModel" attr.aria-invalid="{{tel.touched ? tel.invalid : null}}">
+    <input
+      type="email"
+      id="email"
+      aria-label="Adresse Email"
+      placeholder="Adresse Email"
+      autocomplete="email"
+      name="email"
+      required
+      [(ngModel)]="model.email"
+      #email="ngModel"
+      attr.aria-invalid="{{ email.touched ? email.invalid : null }}"
+    />
+    <input
+      type="tel"
+      id="tel"
+      aria-label="Téléphone"
+      placeholder="Téléphone"
+      autocomplete="tel"
+      name="tel"
+      [(ngModel)]="model.tel"
+      #tel="ngModel"
+      attr.aria-invalid="{{ tel.touched ? tel.invalid : null }}"
+    />
   </div>
-  <input type="text" id="username" aria-label="Nom d'utilisateur" placeholder="Nom d'utilisateur"
-    autocomplete="username" name="username" required [(ngModel)]="model.username" #username="ngModel" attr.aria-invalid="{{username.touched ? username.invalid : null}}">
+  <input
+    type="text"
+    id="username"
+    aria-label="Nom d'utilisateur"
+    placeholder="Nom d'utilisateur"
+    autocomplete="username"
+    name="username"
+    required
+    [(ngModel)]="model.username"
+    #username="ngModel"
+    attr.aria-invalid="{{ username.touched ? username.invalid : null }}"
+  />
   <div class="grid">
-    <input type="password" id="password" aria-label="Mot de passe" placeholder="Mot de passe"
-      autocomplete="new-password" name="password" required [(ngModel)]="model.password" #password="ngModel" attr.aria-invalid="{{password.touched ? password.invalid : null}}">
-    <input type="password" id="password-confirm" aria-label="Confirmer le mot de passe"
-      placeholder="Confirmer le mot de passe" autocomplete="new-password" name="password-confirm" required> 
+    <input
+      type="password"
+      id="password"
+      aria-label="Mot de passe"
+      placeholder="Mot de passe"
+      autocomplete="new-password"
+      name="password"
+      required
+      [(ngModel)]="model.password"
+      #password="ngModel"
+      attr.aria-invalid="{{ password.touched ? password.invalid : null }}"
+    />
+    <input
+      type="password"
+      id="password-confirm"
+      aria-label="Confirmer le mot de passe"
+      placeholder="Confirmer le mot de passe"
+      autocomplete="new-password"
+      name="password-confirm"
+      required
+    />
   </div>
   <button type="submit" [disabled]="!registerForm.valid">S'inscrire</button>
 </form>
