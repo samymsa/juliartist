@@ -9,6 +9,7 @@ import { ModalComponent } from '../modal/modal.component';
   standalone: true,
   imports: [UserFormComponent, UserDataComponent, ModalComponent],
   templateUrl: './main.component.html',
+  styleUrl: './main.component.scss'
 })
 export class MainComponent {
   model = new User();
