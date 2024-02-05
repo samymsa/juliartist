@@ -18,9 +18,16 @@ export class UserFormComponent {
   }
 
   @Input() model = new User();
+  @Output() modelChange = new EventEmitter<User>();
   @Output() submit = new EventEmitter<User>();
 
   onSubmit() {
     this.submit.emit(this.model);
+    this.reset();
+  }
+
+  reset() {
+    this.model = new User();
+    this.modelChange.emit(this.model);
   }
 }
