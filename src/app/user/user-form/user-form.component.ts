@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { User } from '../user';
 
 @Component({
@@ -18,16 +18,11 @@ export class UserFormComponent {
   }
 
   @Input() model = new User();
-  @Output() modelChange = new EventEmitter<User>();
   @Output() submit = new EventEmitter<User>();
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     this.submit.emit(this.model);
-    this.reset();
-  }
-
-  reset() {
-    this.model = new User();
-    this.modelChange.emit(this.model);
+    form.reset();
+    this.model.reset();
   }
 }

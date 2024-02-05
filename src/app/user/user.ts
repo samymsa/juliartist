@@ -13,4 +13,17 @@ export class User {
     public tel: string = ''
   ) { }
 
+  reset() {
+    this.honorificPrefix = '';
+    this.familyName = '';
+    this.givenName = '';
+    this.email = '';
+    this.username = '';
+    this.password = '';
+    this.streetAddress = '';
+    this.postalCode = '';
+    this.city = '';
+    this.tel = '';
+  }
+
 }

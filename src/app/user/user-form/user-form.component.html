@@ -2,7 +2,7 @@
   id="register-form"
   action=""
   method="get"
-  (ngSubmit)="onSubmit()"
+  (ngSubmit)="onSubmit(registerForm)"
   #registerForm="ngForm"
 >
   <select
@@ -95,6 +95,7 @@
       autocomplete="email"
       name="email"
       required
+      email
       [(ngModel)]="model.email"
       #email="ngModel"
       attr.aria-invalid="{{ email.touched ? email.invalid : null }}"
@@ -106,6 +107,7 @@
       placeholder="Téléphone"
       autocomplete="tel"
       name="tel"
+      pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$"
       [(ngModel)]="model.tel"
       #tel="ngModel"
       attr.aria-invalid="{{ tel.touched ? tel.invalid : null }}"
@@ -132,6 +134,7 @@
       autocomplete="new-password"
       name="password"
       required
+      minlength="12"
       [(ngModel)]="model.password"
       #password="ngModel"
       attr.aria-invalid="{{ password.touched ? password.invalid : null }}"
