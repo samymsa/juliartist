@@ -125,7 +125,13 @@
     #username="ngModel"
     attr.aria-invalid="{{ username.touched ? username.invalid : null }}"
   />
-  <div class="grid">
+  <div
+    class="grid"
+    ngModelGroup="passwords"
+    #passwords="ngModelGroup"
+    attr.aria-invalid="{{ passwords.touched ? true : null }}"
+    [appFieldMatchGroup]="['password', 'passwordConfirm']"
+  >
     <input
       type="password"
       id="password"
@@ -134,10 +140,11 @@
       autocomplete="new-password"
       name="password"
       required
-      minlength="12"
       [(ngModel)]="model.password"
       #password="ngModel"
-      attr.aria-invalid="{{ password.touched ? password.invalid : null }}"
+      attr.aria-invalid="{{
+        password.touched ? password.invalid : null
+      }}"
     />
     <input
       type="password"
@@ -145,8 +152,15 @@
       aria-label="Confirmer le mot de passe"
       placeholder="Confirmer le mot de passe"
       autocomplete="new-password"
-      name="password-confirm"
+      name="passwordConfirm"
       required
+      [(ngModel)]="model.passwordConfirm"
+      #passwordConfirm="ngModel"
+      attr.aria-invalid="{{
+        passwordConfirm.touched
+          ? passwords.invalid || passwordConfirm.invalid
+          : null
+      }}"
     />
   </div>
   <button type="submit" [disabled]="!registerForm.valid">S'inscrire</button>

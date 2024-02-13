@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { User } from '../user';
+import { AppFieldMatchGroupDirective } from '../../../shared/field-match-group.directive';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, AppFieldMatchGroupDirective],
   templateUrl: './user-form.component.html',
 })
 export class UserFormComponent {

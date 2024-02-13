@@ -7,6 +7,7 @@ export class User {
     public email: string = '',
     public username: string = '',
     public password: string = '',
+    public passwordConfirm: string = '',
     public streetAddress: string = '',
     public postalCode: string = '',
     public city: string = '',
@@ -20,6 +21,7 @@ export class User {
     this.email = '';
     this.username = '';
     this.password = '';
+    this.passwordConfirm = '';
     this.streetAddress = '';
     this.postalCode = '';
     this.city = '';
