@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class ThemeSwitcherComponent {
   private _scheme: string = "auto";
-  private menuTarget: string = "details[role='list']";
+  private menuTarget: string = "details.dropdown";
   private buttonsTarget: string = "a[data-theme-switcher]";
   private buttonAttribute: string = "data-theme-switcher";
   private rootAttribute: string = "data-theme";
