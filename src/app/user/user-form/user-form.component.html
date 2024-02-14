@@ -188,7 +188,7 @@
         autocomplete="new-password"
         name="password"
         required
-        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{12,}$"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{12,}$"
         [(ngModel)]="model.password"
         #password="ngModel"
         attr.aria-invalid="{{ password.touched ? password.invalid : null }}"
