@@ -188,12 +188,14 @@
         autocomplete="new-password"
         name="password"
         required
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{12,}$"
         [(ngModel)]="model.password"
         #password="ngModel"
         attr.aria-invalid="{{ password.touched ? password.invalid : null }}"
       />
       <small *ngIf="password.invalid && password.touched"
-        >Ce champ est obligatoire
+        >Le mot de passe doit contenir au moins 12 caractères, une lettre
+        majuscule, une lettre minuscule et un chiffre.
       </small>
     </div>
     <div>
