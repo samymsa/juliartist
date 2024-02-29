@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        logo: ["New Walt Disney Font", "sans-serif"],
+      },
+    },
   },
   plugins: [require("daisyui")],
 }
