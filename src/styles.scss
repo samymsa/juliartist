@@ -1,5 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@picocss/pico/scss/pico.scss' with (
-  // Define the root element(s) used to target <header>, <main>, <footer>
-  $semantic-root-element: "app-header, app-main, app-footer",
-)
