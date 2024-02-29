@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ThemeSwitcherComponent],
+  imports: [],
   templateUrl: './navbar.component.html',
 })
-export class NavbarComponent {
-
-}
+export class NavbarComponent {}

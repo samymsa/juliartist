@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        sans: ["Inter", "sans-serif", "ui-sans-serif", "system-ui"],
         logo: ["New Walt Disney Font", "sans-serif"],
       },
     },

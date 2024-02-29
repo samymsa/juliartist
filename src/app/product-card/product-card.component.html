@@ -1,0 +1,22 @@
+<div
+  class="card w-80 bg-base-100 shadow-xl transition will-change-transform hover:scale-105"
+>
+  <figure class="px-10 pt-10">
+    <img
+      src="https://picsum.photos/300?cache={{ product.title }}"
+      alt="Shoes"
+      class="aspect-square rounded-xl object-scale-down"
+    />
+  </figure>
+  <div class="card-body">
+    <hgroup class="mb-4 flex flex-col items-center text-center">
+      <h2 class="card-title">{{ product.title }}</h2>
+      <p class="text-sm font-light italic text-gray-500">
+        {{ product.collection }}
+      </p>
+    </hgroup>
+    <footer>
+      <p>A partir de {{ product.price | currency: "EUR" }}</p>
+    </footer>
+  </div>
+</div>
