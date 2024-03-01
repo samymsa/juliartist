@@ -7,7 +7,12 @@ import { Product } from './models/product';
 @Injectable()
 export class ApiService {
   constructor(private http: HttpClient) {}
-  public getProducts(): Observable<Product[]> {
+
+  getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(environment.backendProducts);
+  }
+  
+  getCollections(): Observable<string[]> {
+    return this.http.get<string[]>(environment.backendCollections);
   }
 }

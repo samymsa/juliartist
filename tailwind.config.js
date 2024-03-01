@@ -1,10 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif", "ui-sans-serif", "system-ui"],
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
         logo: ["New Walt Disney Font", "sans-serif"],
       },
     },
