@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FooterComponent } from './footer/footer.component';
-import { MainComponent } from './main/main.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { MainComponent } from './components/main/main.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 
