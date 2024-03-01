@@ -1,9 +1,9 @@
 <main>
   <div class="hero min-h-64">
-    <div class="hero-content flex-col gap-16">
+    <div class="hero-content flex-col gap-16 text-center">
       <h1 class="text-5xl font-bold">Dessins</h1>
       <form [formGroup]="searchForm">
-        <div class="join">
+        <div class="join join-vertical md:join-horizontal">
           <input
             type="text"
             name="title"
@@ -23,6 +23,7 @@
           </select>
         </div>
       </form>
+      <p>{{ (products$ | async)?.length }} résultat(s)</p>
     </div>
   </div>
   <div class="my-8 flex justify-center">
