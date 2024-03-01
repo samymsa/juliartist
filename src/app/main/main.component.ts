@@ -32,15 +32,12 @@ export class MainComponent {
 
   private getProducts(): Observable<Product[]> {
     const products$ = this.api.getProducts();
-    const search$ = combineLatest([
-      this.searchForm.controls.title.valueChanges.pipe(startWith('')),
-      this.searchForm.controls.collection.valueChanges.pipe(startWith('')),
-    ]);
+    const search$ = this.searchForm.valueChanges.pipe(startWith(this.searchForm.value));
 
     return combineLatest([products$, search$]).pipe(
-      map(([products, [title, collection]]) => products.filter(products => {
-        const titleMatch = products.title.toLowerCase().includes(title?.toLowerCase() ?? '');
-        const collectionMatch = collection ? products.collection === collection : true;
+      map(([products, { title, collection }]) => products.filter(product => {
+        const titleMatch = product.title.toLowerCase().includes(title?.toLowerCase() ?? '');
+        const collectionMatch = collection ? product.collection === collection : true;
         return titleMatch && collectionMatch;
       }))
     );
