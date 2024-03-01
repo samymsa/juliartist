@@ -9,7 +9,6 @@ import localeFr from '@angular/common/locales/fr';
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
   imports: [NavbarComponent, MainComponent, FooterComponent],
 })
 export class AppComponent {
