@@ -37,5 +37,6 @@ export class CreditCardFormComponent {
       cvv: this.form.get('cvv')?.value || '',
     };
     this.creditCardService.add(creditCard);
+    this.form.reset();
   }
 }
