@@ -1,0 +1,19 @@
+<main>
+  <app-credit-card-form></app-credit-card-form>
+  <div class="m-16 flex justify-center">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Numéro de carte</th>
+          <th>Date d'expiration</th>
+          <th>CVV</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (card of creditCards$ | async; track card.number) {
+          <tr app-credit-card [card]="card"></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</main>
