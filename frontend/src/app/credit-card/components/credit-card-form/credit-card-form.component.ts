@@ -9,13 +9,13 @@ import { CreditCardService } from '../../services/credit-card.service';
 })
 export class CreditCardFormComponent {
   form = this.fb.group({
-    name: ['', [Validators.required]],
-    number: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
+    name: ['', [Validators.required, Validators.pattern('[\\S\\s]+[\\S]+')]],
+    number: ['', [Validators.required, Validators.pattern('\\d{16}')]],
     expirationDate: [
       '',
-      [Validators.required, Validators.pattern('^[0-9]{2}/[0-9]{2}$')],
+      [Validators.required, Validators.pattern('\\d{2}/\\d{2}')],
     ],
-    cvv: ['', [Validators.required, Validators.pattern('^[0-9]{3}$')]],
+    cvv: ['', [Validators.required, Validators.pattern('\\d{3}')]],
   });
 
   constructor(

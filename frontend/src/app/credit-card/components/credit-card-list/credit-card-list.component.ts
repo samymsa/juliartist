@@ -8,9 +8,5 @@ import { CreditCardService } from '../../services/credit-card.service';
 export class CreditCardListComponent {
   creditCards$ = this.creditCardService.getCreditCards();
 
-  constructor(private creditCardService: CreditCardService) {
-    this.creditCardService.getCreditCards().subscribe((creditCards) => {
-      console.log('list', creditCards);
-    });
-  }
+  constructor(private creditCardService: CreditCardService) {}
 }

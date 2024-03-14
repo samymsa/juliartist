@@ -1,5 +1,5 @@
 <form
-  class="mx-auto my-8 max-w-sm space-y-4 flex flex-col"
+  class="mx-auto my-8 flex max-w-sm flex-col space-y-4"
   [formGroup]="form"
   (ngSubmit)="onSubmit()"
 >
@@ -9,16 +9,17 @@
     class="input input-bordered"
     formControlName="name"
     placeholder="Nom"
-    required
+    autocomplete="cc-name"
+    [appInputError]="form.get('name')"
   />
 
   <input
     type="text"
-    id="card-number-input"
     class="input input-bordered"
-    placeholder="4242 4242 4242 4242"
-    required
     formControlName="number"
+    placeholder="4242 4242 4242 4242"
+    autocomplete="cc-number"
+    [appInputError]="form.get('number')"
   />
 
   <div class="join">
@@ -27,14 +28,16 @@
       class="input join-item input-bordered"
       formControlName="expirationDate"
       placeholder="MM/YY"
-      required
+      autocomplete="cc-exp"
+      [appInputError]="form.get('expirationDate')"
     />
     <input
       type="text"
-      class="input join-item input-bordered max-w-24"
+      class="input join-item input-bordered w-full"
       formControlName="cvv"
       placeholder="CCV"
-      required
+      autocomplete="cc-csc"
+      [appInputError]="form.get('cvv')"
     />
   </div>
 
