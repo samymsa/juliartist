@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, combineLatest, map, startWith } from 'rxjs';
-import { Product } from '../models/product';
-import { ApiService } from '../services/api.service';
+import { Product } from '../../models/product';
+import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
-import { ProductCardComponent } from '../components/product-card/product-card.component';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
 
 @Component({
   selector: 'app-main',
