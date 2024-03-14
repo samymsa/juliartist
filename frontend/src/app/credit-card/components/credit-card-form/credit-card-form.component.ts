@@ -5,7 +5,7 @@ import { CreditCardService } from '../../services/credit-card.service';
 @Component({
   selector: 'app-credit-card-form',
   templateUrl: './credit-card-form.component.html',
-  providers: [CreditCardService],
+  providers: [],
 })
 export class CreditCardFormComponent {
   form = this.fb.group({
@@ -27,6 +27,9 @@ export class CreditCardFormComponent {
   }
 
   onSubmit() {
+    if (this.form.invalid) {
+      return;
+    }
     const creditCard = {
       name: this.form.get('name')?.value || '',
       number: this.form.get('number')?.value || '',
