@@ -3,7 +3,7 @@ import { ProductsPageComponent } from './pages/products-page/products-page.compo
 import { CreditCardListComponent } from './credit-card/components/credit-card-list/credit-card-list.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'credit-cards', pathMatch: 'full' },
+  { path: '', redirectTo: 'products', pathMatch: 'full' },
   { path: 'products', component: ProductsPageComponent },
   { path: 'credit-cards', component: CreditCardListComponent },
 ];
