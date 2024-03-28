@@ -1,9 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { ShoppingCartState } from '../shopping-cart.state';
 
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
 })
 export class ShoppingCartComponent {
-  itemsCount = 0;
+  @Select(ShoppingCartState.getItemsCount)
+  declare itemsCount$: Observable<number>;
 }
