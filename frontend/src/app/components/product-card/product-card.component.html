@@ -15,8 +15,9 @@
         {{ product.collection }}
       </p>
     </hgroup>
-    <footer>
+    <footer class="card-actions items-center justify-between">
       <p>A partir de {{ product.price | currency: "EUR" }}</p>
+      <app-shopping-cart-add></app-shopping-cart-add>
     </footer>
   </div>
 </div>
