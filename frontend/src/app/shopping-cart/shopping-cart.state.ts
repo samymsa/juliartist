@@ -1,33 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Product } from '../models/product';
+import { ShoppingCartItem } from './models/shopping-cart-item';
 import { AddToCart, RemoveFromCart } from './shopping-cart.actions';
 
 export interface ShoppingCartStateModel {
-  products: Product[];
+  items: ShoppingCartItem[];
 }
 
 @State<ShoppingCartStateModel>({
   name: 'shoppingCart',
   defaults: {
-    products: [],
+    items: [],
   },
 })
 @Injectable()
 export class ShoppingCartState {
   @Selector()
-  static getProducts(state: ShoppingCartStateModel) {
-    return state.products;
+  static getItems(state: ShoppingCartStateModel) {
+    return state.items;
   }
 
   @Selector()
-  static getProductCount(state: ShoppingCartStateModel) {
-    return state.products.length;
+  static getTotalQuantity(state: ShoppingCartStateModel) {
+    return state.items.reduce((acc, item) => acc + item.quantity, 0);
   }
 
   @Selector()
   static getTotalPrice(state: ShoppingCartStateModel) {
-    return state.products.reduce((acc, product) => acc + product.price, 0);
+    return state.items.reduce(
+      (acc, item) => acc + item.product.price * item.quantity,
+      0,
+    );
   }
 
   @Action(AddToCart)
@@ -36,8 +39,20 @@ export class ShoppingCartState {
     { payload }: AddToCart,
   ) {
     const state = getState();
+    console.log('state', state);
+    const item = state.items.find((i) => i.product.id === payload.id);
+
+    if (item) {
+      patchState({
+        items: state.items.map((i) =>
+          i.product.id === payload.id ? { ...i, quantity: i.quantity + 1 } : i,
+        ),
+      });
+      return;
+    }
+
     patchState({
-      products: [...state.products, payload],
+      items: [...state.items, { product: payload, quantity: 1 }],
     });
   }
 
@@ -47,8 +62,7 @@ export class ShoppingCartState {
     { payload }: RemoveFromCart,
   ) {
     const state = getState();
-    patchState({
-      products: state.products.filter((product) => product !== payload),
-    });
+    const items = state.items.filter((i) => i.product.id !== payload.id);
+    patchState({ items });
   }
 }

@@ -8,6 +8,6 @@ import { ShoppingCartState } from '../../shopping-cart.state';
   templateUrl: './shopping-cart-link.component.html',
 })
 export class ShoppingCartLinkComponent {
-  @Select(ShoppingCartState.getProductCount)
-  declare productCount$: Observable<number>;
+  @Select(ShoppingCartState.getTotalQuantity)
+  declare totalQuantity$: Observable<number>;
 }
