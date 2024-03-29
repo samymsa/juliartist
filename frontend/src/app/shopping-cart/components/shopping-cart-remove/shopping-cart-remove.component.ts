@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Product } from '../../models/product';
-import { RemoveFromCart } from '../shopping-cart.actions';
+import { Product } from '../../../models/product';
+import { RemoveFromCart } from '../../shopping-cart.actions';
 
 @Component({
   selector: 'app-shopping-cart-remove',
