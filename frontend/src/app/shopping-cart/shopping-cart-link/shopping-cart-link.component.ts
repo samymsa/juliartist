@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { ShoppingCartState } from '../shopping-cart.state';
 
 @Component({
-  selector: 'app-shopping-cart',
-  templateUrl: './shopping-cart.component.html',
+  selector: 'app-shopping-cart-link',
+  templateUrl: './shopping-cart-link.component.html',
 })
-export class ShoppingCartComponent {
+export class ShoppingCartLinkComponent {
   @Select(ShoppingCartState.getItemsCount)
   declare itemsCount$: Observable<number>;
 }

@@ -1,4 +1,4 @@
-<button class="btn btn-circle btn-ghost">
+<a class="btn btn-circle btn-ghost" [routerLink]="['/shopping-cart']">
   <div class="indicator">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,4 +16,4 @@
     </svg>
     <span class="badge indicator-item badge-sm">{{ itemsCount$ | async }}</span>
   </div>
-</button>
+</a>
