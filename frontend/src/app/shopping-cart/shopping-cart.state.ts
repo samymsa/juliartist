@@ -1,23 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Product } from '../models/product';
-import { AddToCart } from './shopping-cart.actions';
+import { AddToCart, RemoveFromCart } from './shopping-cart.actions';
 
 export interface ShoppingCartStateModel {
-  items: Product[];
+  products: Product[];
 }
 
 @State<ShoppingCartStateModel>({
   name: 'shoppingCart',
   defaults: {
-    items: [],
+    products: [],
   },
 })
 @Injectable()
 export class ShoppingCartState {
   @Selector()
-  static getItemsCount(state: ShoppingCartStateModel) {
-    return state.items.length;
+  static getProducts(state: ShoppingCartStateModel) {
+    return state.products;
+  }
+
+  @Selector()
+  static getProductCount(state: ShoppingCartStateModel) {
+    return state.products.length;
+  }
+
+  @Selector()
+  static getTotalPrice(state: ShoppingCartStateModel) {
+    return state.products.reduce((acc, product) => acc + product.price, 0);
   }
 
   @Action(AddToCart)
@@ -27,7 +37,18 @@ export class ShoppingCartState {
   ) {
     const state = getState();
     patchState({
-      items: [...state.items, payload],
+      products: [...state.products, payload],
+    });
+  }
+
+  @Action(RemoveFromCart)
+  removeFromCart(
+    { getState, patchState }: StateContext<ShoppingCartStateModel>,
+    { payload }: RemoveFromCart,
+  ) {
+    const state = getState();
+    patchState({
+      products: state.products.filter((product) => product !== payload),
     });
   }
 }

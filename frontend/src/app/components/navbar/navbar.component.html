@@ -1,11 +1,13 @@
-<div class="navbar bg-base-100 px-8">
+<div class="navbar sticky top-0 z-10 bg-base-100 px-8">
   <div class="navbar-start">
-    <span class="m-3 font-logo text-4xl">JuliArtist</span>
+    <a [routerLink]="['/']" class="btn btn-ghost">
+      <span class="font-logo text-4xl font-normal">JuliArtist</span>
+    </a>
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal uppercase">
       <li>
-        <a href="#" class="link-hover link">Dessins</a>
+        <a [routerLink]="['/products']" class="link-hover link">Dessins</a>
       </li>
       <li>
         <a href="#" class="link-hover link">Collections</a>

@@ -6,7 +6,9 @@ import {
 import { provideRouter } from '@angular/router';
 
 import { provideHttpClient } from '@angular/common/http';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsModule } from '@ngxs/store';
+import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -17,6 +19,11 @@ export const appConfig: ApplicationConfig = {
       provide: LOCALE_ID,
       useValue: 'fr-FR',
     },
-    importProvidersFrom(NgxsModule.forRoot([])),
+    importProvidersFrom(
+      NgxsModule.forRoot([], {
+        developmentMode: !environment.production,
+      }),
+      NgxsStoragePluginModule.forRoot(),
+    ),
   ],
 };

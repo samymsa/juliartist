@@ -1,0 +1,53 @@
+<div class="hero min-h-64">
+  <div class="hero-content w-full flex-col justify-between sm:flex-row">
+    <h1 class="text-5xl font-bold">Mon panier</h1>
+    <a [routerLink]="['/products']" class="btn btn-outline"
+      >Continuer mes achats</a
+    >
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Produit</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (product of products$ | async; track product.title) {
+      <tr>
+        <td>
+          <div class="flex gap-4">
+            <img
+              src="https://picsum.photos/150?cache={{ product.title }}"
+              alt="{{ product.title }}"
+              class="h-16 w-16 object-cover"
+            />
+            <div>
+              <h2 class="font-bold">{{ product.title }}</h2>
+              <p class="text-sm font-light italic text-gray-500">
+                {{ product.collection }}
+              </p>
+              <p>{{ product.price | currency: "EUR" }}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <app-shopping-cart-remove
+            [product]="product"
+          ></app-shopping-cart-remove>
+        </td>
+      </tr>
+    }
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <td>
+        {{ totalPrice$ | async | currency: "EUR" }}
+      </td>
+    </tr>
+  </tfoot>
+</table>

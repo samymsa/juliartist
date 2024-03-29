@@ -16,8 +16,8 @@
       </p>
     </hgroup>
     <footer class="card-actions items-center justify-between">
-      <p>A partir de {{ product.price | currency: "EUR" }}</p>
-      <app-shopping-cart-add></app-shopping-cart-add>
+      <p>{{ product.price | currency: "EUR" }}</p>
+      <app-shopping-cart-add [product]="product"></app-shopping-cart-add>
     </footer>
   </div>
 </div>

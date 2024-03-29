@@ -5,3 +5,9 @@ export class AddToCart {
 
   constructor(public payload: Product) {}
 }
+
+export class RemoveFromCart {
+  static readonly type = '[ShoppingCart] RemoveFromCart';
+
+  constructor(public payload: Product) {}
+}
