@@ -15,12 +15,12 @@
     </tr>
   </thead>
   <tbody>
-    @for (product of products$ | async; track product.title) {
+    @for (product of products$ | async; track product.id) {
       <tr>
         <td>
           <div class="flex gap-4">
             <img
-              src="https://picsum.photos/150?cache={{ product.title }}"
+              src="https://picsum.photos/150?cache={{ product.id }}"
               alt="{{ product.title }}"
               class="h-16 w-16 object-cover"
             />
