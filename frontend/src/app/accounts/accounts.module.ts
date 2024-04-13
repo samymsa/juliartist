@@ -4,9 +4,14 @@ import { AccountsLinkComponent } from './components/accounts-link/accounts-link.
 import { AccountsRoutingModule } from './accounts-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountsLoginComponent } from './components/accounts-login/accounts-login.component';
+import { AccountsRegisterComponent } from './components/accounts-register/accounts-register.component';
 
 @NgModule({
-  declarations: [AccountsLinkComponent, AccountsLoginComponent],
+  declarations: [
+    AccountsLinkComponent,
+    AccountsLoginComponent,
+    AccountsRegisterComponent,
+  ],
   imports: [CommonModule, ReactiveFormsModule, AccountsRoutingModule],
   exports: [AccountsLinkComponent],
 })
