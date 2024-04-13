@@ -1,20 +1,29 @@
 import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
   ApplicationConfig,
   LOCALE_ID,
   importProvidersFrom,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { provideHttpClient } from '@angular/common/http';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
+import { AuthInterceptor } from './auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     {
       provide: LOCALE_ID,
       useValue: 'fr-FR',
