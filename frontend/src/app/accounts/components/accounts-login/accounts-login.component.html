@@ -44,6 +44,17 @@
           formControlName="password"
         />
       </label>
+      <button
+        type="submit"
+        class="btn btn-neutral w-full"
+        [disabled]="loginForm.invalid"
+      >
+        Se connecter
+      </button>
+      <p class="text-sm">
+        Pas encore de compte ?
+        <a class="link" [routerLink]="['/accounts/register']">Inscrivez-vous</a>
+      </p>
     </form>
   </div>
 </div>
