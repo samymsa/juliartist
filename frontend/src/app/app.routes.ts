@@ -11,4 +11,9 @@ export const routes: Routes = [
         (m) => m.ShoppingCartModule,
       ),
   },
+  {
+    path: 'accounts',
+    loadChildren: () =>
+      import('./accounts/accounts.module').then((m) => m.AccountsModule),
+  },
 ];
