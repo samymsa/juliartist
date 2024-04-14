@@ -25,6 +25,16 @@ function login(req, res) {
   });
 }
 
+function register(req, res) {
+  const user = req.body;
+  const createdUser = usersService.createUser(user);
+
+  res.send({
+    user: createdUser,
+  });
+}
+
 module.exports = {
   login,
+  register,
 };

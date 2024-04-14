@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../../../services/api.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ApiService } from '../../../services/api.service';
 import { passwordMatchValidator } from '../../validators/password-match.validator';
 
 @Component({
   selector: 'accounts-register',
   templateUrl: './accounts-register.component.html',
+  providers: [ApiService],
 })
 export class AccountsRegisterComponent {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
+  ) {}
 
   registerForm = this.formBuilder.group(
     {
@@ -23,5 +27,14 @@ export class AccountsRegisterComponent {
     },
   );
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    this.apiService.register(this.registerForm.value).subscribe((response) => {
+      console.log('Register response: ', response);
+      this.registerForm.reset();
+    });
+  }
 }
