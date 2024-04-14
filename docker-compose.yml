@@ -1,5 +1,6 @@
 services:
   frontend:
+    container_name: myapp-frontend
     image: node
     ports:
       - "4200:4200"
@@ -9,6 +10,7 @@ services:
     command: sh -c "npm i -g @angular/cli && tail -f /dev/null"
 
   backend:
+    container_name: myapp-backend
     image: node
     ports:
       - "3000:3000"
