@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { passwordMatchValidator } from '../../validators/password-match.validator';
 
@@ -12,6 +13,7 @@ export class AccountsRegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
+    private router: Router,
   ) {}
 
   registerForm = this.formBuilder.group(
@@ -34,7 +36,7 @@ export class AccountsRegisterComponent {
 
     this.apiService.register(this.registerForm.value).subscribe((response) => {
       console.log('Register response: ', response);
-      this.registerForm.reset();
+      this.router.navigate(['/']);
     });
   }
 }

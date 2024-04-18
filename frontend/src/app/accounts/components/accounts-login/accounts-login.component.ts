@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class AccountsLoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
+    private router: Router,
   ) {}
 
   loginForm = this.formBuilder.group({
@@ -25,7 +27,7 @@ export class AccountsLoginComponent {
 
     this.apiService.login(this.loginForm.value).subscribe((response) => {
       console.log('Login response: ', response);
-      this.loginForm.reset();
+      this.router.navigate(['/']);
     });
   }
 }
