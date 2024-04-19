@@ -9,13 +9,13 @@ import { tap } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor {
-  jwtToken = '';
+  accessToken = '';
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if (this.jwtToken) {
+    if (this.accessToken) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.jwtToken}`,
+          Authorization: `Bearer ${this.accessToken}`,
         },
       });
     }
@@ -24,7 +24,7 @@ export class AuthInterceptor {
       tap((evt: HttpEvent<any>) => {
         if (evt instanceof HttpResponse && evt.headers.has('Authorization')) {
           const authHeader = evt.headers.get('Authorization');
-          this.jwtToken = authHeader?.split(' ')[1] || this.jwtToken;
+          this.accessToken = authHeader?.split(' ')[1] || this.accessToken;
         }
       }),
     );
