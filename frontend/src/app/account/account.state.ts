@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { SetAccessToken } from './account.actions';
+import { SetAccessToken, SetAccount } from './account.actions';
 import { Account } from './models/account';
 
 export interface AccountStateModel {
@@ -43,5 +43,13 @@ export class AccountState {
     { payload }: SetAccessToken,
   ) {
     patchState({ accessToken: payload });
+  }
+
+  @Action(SetAccount)
+  setAccount(
+    { patchState }: StateContext<AccountStateModel>,
+    { payload }: SetAccount,
+  ) {
+    patchState({ account: payload });
   }
 }

@@ -9,8 +9,6 @@ function generateAccessToken(user) {
 function login(req, res) {
   const user = req.body;
 
-  console.log(user);
-
   if (!usersService.validateUser(user)) {
     return res.status(401).send({
       error: "Invalid email or password",
@@ -18,20 +16,18 @@ function login(req, res) {
   }
 
   const accessToken = generateAccessToken(user);
+  const fullUser = usersService.getUserByEmail(user.email);
 
   res.setHeader("Authorization", `Bearer ${accessToken}`);
   res.send({
-    user,
+    user: fullUser,
   });
 }
 
 function register(req, res) {
   const user = req.body;
-  const createdUser = usersService.createUser(user);
-
-  res.send({
-    user: createdUser,
-  });
+  usersService.createUser(user);
+  login(req, res);
 }
 
 module.exports = {

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
+import { SetAccount } from '../../account.actions';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'account-login',
@@ -13,6 +15,7 @@ export class AccountLoginComponent {
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private router: Router,
+    private store: Store,
   ) {}
 
   loginForm = this.formBuilder.group({
@@ -26,7 +29,7 @@ export class AccountLoginComponent {
     }
 
     this.apiService.login(this.loginForm.value).subscribe((response) => {
-      console.log('Login response: ', response);
+      this.store.dispatch(new SetAccount(response));
       this.router.navigate(['/']);
     });
   }
