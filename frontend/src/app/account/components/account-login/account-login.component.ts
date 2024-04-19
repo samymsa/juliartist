@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 
 @Component({
-  selector: 'accounts-login',
-  templateUrl: './accounts-login.component.html',
+  selector: 'account-login',
+  templateUrl: './account-login.component.html',
   providers: [ApiService],
 })
-export class AccountsLoginComponent {
+export class AccountLoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,

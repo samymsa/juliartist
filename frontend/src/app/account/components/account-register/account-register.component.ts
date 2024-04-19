@@ -5,11 +5,11 @@ import { ApiService } from '../../../services/api.service';
 import { passwordMatchValidator } from '../../validators/password-match.validator';
 
 @Component({
-  selector: 'accounts-register',
-  templateUrl: './accounts-register.component.html',
+  selector: 'account-register',
+  templateUrl: './account-register.component.html',
   providers: [ApiService],
 })
-export class AccountsRegisterComponent {
+export class AccountRegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
