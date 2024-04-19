@@ -5,11 +5,22 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { tap } from 'rxjs';
+import { SetAccessToken } from './account/account.actions';
+import { AccountState } from './account/account.state';
 
 @Injectable()
 export class AuthInterceptor {
-  accessToken = '';
+  constructor(private store: Store) {}
+
+  get accessToken() {
+    return this.store.selectSnapshot<string>(AccountState.getAccessToken);
+  }
+
+  set accessToken(token: string) {
+    this.store.dispatch(new SetAccessToken(token));
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (this.accessToken) {
