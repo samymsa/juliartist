@@ -1,10 +1,10 @@
 <div
   class="tooltip tooltip-bottom"
-  [attr.data-tip]="(isAuthenticated$ | async) ? 'Mon compte' : 'Se connecter'"
+  [attr.data-tip]="dataTip"
 >
   <a
     class="btn btn-circle btn-ghost"
-    [routerLink]="(isAuthenticated$ | async) ? '/account' : '/account/login'"
+    [routerLink]="routerLink"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
