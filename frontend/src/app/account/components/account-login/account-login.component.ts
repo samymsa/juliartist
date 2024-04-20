@@ -29,7 +29,7 @@ export class AccountLoginComponent {
     }
 
     this.apiService.login(this.loginForm.value).subscribe((response) => {
-      this.store.dispatch(new SetAccount(response));
+      this.store.dispatch(new SetAccount(response.user));
       this.router.navigate(['/']);
     });
   }

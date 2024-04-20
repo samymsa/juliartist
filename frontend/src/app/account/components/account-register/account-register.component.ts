@@ -38,7 +38,7 @@ export class AccountRegisterComponent {
     }
 
     this.apiService.register(this.registerForm.value).subscribe((response) => {
-      this.store.dispatch(new SetAccount(response));
+      this.store.dispatch(new SetAccount(response.user));
       this.router.navigate(['/']);
     });
   }

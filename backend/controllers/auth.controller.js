@@ -30,7 +30,16 @@ function register(req, res) {
   login(req, res);
 }
 
+function update(req, res) {
+  const user = req.body;
+  const updatedUser = usersService.updateUser(user);
+  res.send({
+    user: updatedUser,
+  });
+}
+
 module.exports = {
   login,
   register,
+  update,
 };

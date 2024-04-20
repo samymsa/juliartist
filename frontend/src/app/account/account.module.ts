@@ -7,9 +7,11 @@ import { AccountState } from './account.state';
 import { AccountLinkComponent } from './components/account-link/account-link.component';
 import { AccountLoginComponent } from './components/account-login/account-login.component';
 import { AccountRegisterComponent } from './components/account-register/account-register.component';
+import { AccountComponent } from './components/account/account.component';
 
 @NgModule({
   declarations: [
+    AccountComponent,
     AccountLinkComponent,
     AccountLoginComponent,
     AccountRegisterComponent,

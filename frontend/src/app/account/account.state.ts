@@ -32,11 +32,6 @@ export class AccountState {
     return state.account;
   }
 
-  @Selector()
-  static getFullName(state: AccountStateModel) {
-    return `${state.account?.firstName} ${state.account?.lastName}`;
-  }
-
   @Action(SetAccessToken)
   setAccessToken(
     { patchState }: StateContext<AccountStateModel>,

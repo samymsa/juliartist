@@ -3,6 +3,7 @@ export const environment = {
   backendLogin: '/api/auth/login',
   backendLogout: '/api/auth/logout',
   backendRegister: '/api/auth/register',
+  backendUpdateAccount: '/api/auth/update',
   backendProducts: '/api/products',
   backendCollections: '/api/collections',
 };

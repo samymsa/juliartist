@@ -16,6 +16,10 @@ export class ApiService {
     return this.http.post(environment.backendRegister, data);
   }
 
+  updateAccount(data: any): Observable<any> {
+    return this.http.put(environment.backendUpdateAccount, data);
+  }
+
   getProducts(): Observable<Product[]> {
     return this.http
       .get<Product[]>(environment.backendProducts)

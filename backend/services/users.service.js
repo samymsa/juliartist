@@ -13,6 +13,11 @@ function createUser(user) {
   return user;
 }
 
+function updateUser(user) {
+  console.log("Updating user", user);
+  return user;
+}
+
 function getUserByEmail(email) {
   console.log("Getting user by email", email);
   return {
@@ -26,5 +31,6 @@ function getUserByEmail(email) {
 module.exports = {
   validateUser,
   createUser,
+  updateUser,
   getUserByEmail,
 };
