@@ -15,6 +15,7 @@ function login(req, res) {
     });
   }
 
+  delete user.password; // Don't store password in token
   const accessToken = generateAccessToken(user);
   const fullUser = usersService.getUserByEmail(user.email);
 
