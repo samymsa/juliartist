@@ -20,6 +20,7 @@ export class AccountComponent {
     private store: Store,
   ) {}
 
+  loading = false;
   success = false;
 
   updateForm = this.formBuilder.group({
@@ -52,10 +53,12 @@ export class AccountComponent {
       return;
     }
 
+    this.loading = true;
     this.apiService
       .updateAccount(this.updateForm.value)
       .subscribe((response) => {
         this.store.dispatch(new SetAccount(response.user));
+        this.loading = false;
         this.success = true;
         setTimeout(() => {
           this.success = false;

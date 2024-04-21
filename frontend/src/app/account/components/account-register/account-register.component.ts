@@ -19,6 +19,8 @@ export class AccountRegisterComponent {
     private store: Store,
   ) {}
 
+  loading = false;
+
   registerForm = this.formBuilder.group(
     {
       firstName: ['', Validators.required],
@@ -37,6 +39,7 @@ export class AccountRegisterComponent {
       return;
     }
 
+    this.loading = true;
     this.apiService.register(this.registerForm.value).subscribe((response) => {
       this.store.dispatch(new SetAccount(response.user));
       this.router.navigate(['/']);

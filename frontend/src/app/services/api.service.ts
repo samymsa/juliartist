@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, of, share } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Product } from '../models/product';
 
@@ -23,12 +23,14 @@ export class ApiService {
   getProducts(): Observable<Product[]> {
     return this.http
       .get<Product[]>(environment.backendProducts)
+      .pipe(share())
       .pipe(catchError(() => of([])));
   }
 
   getCollections(): Observable<string[]> {
     return this.http
       .get<string[]>(environment.backendCollections)
+      .pipe(share())
       .pipe(catchError(() => of([])));
   }
 }

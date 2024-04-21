@@ -22,7 +22,11 @@
         </select>
       </div>
     </form>
-    <p>{{ (products$ | async)?.length }} résultat(s)</p>
+    @if (products$ | async; as products) {
+      <p>{{ products.length }} résultat(s)</p>
+    } @else {
+      <span class="loading loading-dots loading-lg"></span>
+    }
   </div>
 </div>
 <div class="my-8 flex justify-center">

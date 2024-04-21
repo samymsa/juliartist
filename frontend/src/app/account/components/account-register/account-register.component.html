@@ -84,9 +84,13 @@
       <button
         type="submit"
         class="btn btn-neutral w-full"
-        [disabled]="registerForm.invalid"
+        [disabled]="registerForm.invalid || loading"
       >
-        Créer un compte
+        @if (loading) {
+          <span class="loading loading-dots"></span>
+        } @else {
+          Créer un compte
+        }
       </button>
       <p class="text-sm">
         Déjà un compte ?

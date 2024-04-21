@@ -64,9 +64,13 @@
       <button
         type="submit"
         class="btn btn-neutral w-full"
-        [disabled]="updateForm.invalid"
+        [disabled]="updateForm.invalid || loading"
       >
-        Mettre à jour mes informations
+        @if (loading) {
+          <span class="loading loading-dots"></span>
+        } @else {
+          Mettre à jour mes informations
+        }
       </button>
     </form>
     <a [routerLink]="['/account/logout']" class="link"> Se déconnecter </a>

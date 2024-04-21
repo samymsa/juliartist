@@ -18,6 +18,8 @@ export class AccountLoginComponent {
     private store: Store,
   ) {}
 
+  loading = false;
+
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
@@ -28,6 +30,7 @@ export class AccountLoginComponent {
       return;
     }
 
+    this.loading = true;
     this.apiService.login(this.loginForm.value).subscribe((response) => {
       this.store.dispatch(new SetAccount(response.user));
       this.router.navigate(['/']);
