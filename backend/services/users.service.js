@@ -22,9 +22,7 @@ function getUserByEmail(email) {
   console.log("Getting user by email", email);
   return {
     id: 1,
-    firstName: "John",
-    lastName: "Doe",
-    email: "johndoe@example.com",
+    email,
   };
 }
 
