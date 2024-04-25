@@ -1,7 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Observable, combineLatest, map, startWith } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  of,
+  startWith,
+  switchMap,
+} from 'rxjs';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { Product } from '../../models/product';
 import { ApiService } from '../../services/api.service';
@@ -31,27 +39,16 @@ export class ProductsPageComponent {
   }
 
   private getProducts(): Observable<Product[]> {
-    const products$ = this.api.getProducts();
-    const search$ = this.searchForm.valueChanges.pipe(
+    return this.searchForm.valueChanges.pipe(
       startWith(this.searchForm.value),
-    );
-
-    return combineLatest([products$, search$]).pipe(
-      map(([products, { title, collection }]) =>
-        products.filter((product) => {
-          const titleMatch = product.title
-            .toLowerCase()
-            .includes(title?.toLowerCase() ?? '');
-          const collectionMatch = collection
-            ? product.collection === collection
-            : true;
-          return titleMatch && collectionMatch;
-        }),
-      ),
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((query) => this.api.getProducts(query)),
+      catchError(() => of([])),
     );
   }
 
   private getCollections(): Observable<string[]> {
-    return this.api.getCollections();
+    return this.api.getCollections().pipe(catchError(() => of([])));
   }
 }

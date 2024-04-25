@@ -1,9 +1,10 @@
 const productsService = require("../services/products.service");
 
-function getAll(req, res) {
-  res.send(productsService.getAll());
+function getProducts(req, res) {
+  const products = productsService.getProducts(req.query);
+  res.send(products);
 }
 
 module.exports = {
-  getAll,
+  getProducts,
 };

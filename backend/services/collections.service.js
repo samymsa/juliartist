@@ -1,9 +1,9 @@
 const collections = require("../assets/mocks/collections.json");
 
-function getAll() {
+function getCollections() {
   return collections;
 }
 
 module.exports = {
-  getAll,
+  getCollections,
 };

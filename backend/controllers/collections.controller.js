@@ -1,9 +1,9 @@
 const collectionsService = require("../services/collections.service");
 
-function getAll(req, res) {
-  res.send(collectionsService.getAll());
+function getCollections(req, res) {
+  res.send(collectionsService.getCollections());
 }
 
 module.exports = {
-  getAll,
+  getCollections,
 };
