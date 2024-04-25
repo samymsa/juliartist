@@ -7,6 +7,7 @@ import {
   debounceTime,
   distinctUntilChanged,
   of,
+  share,
   startWith,
   switchMap,
 } from 'rxjs';
@@ -45,10 +46,14 @@ export class ProductsPageComponent {
       distinctUntilChanged(),
       switchMap((query) => this.api.getProducts(query)),
       catchError(() => of([])),
+      share(),
     );
   }
 
   private getCollections(): Observable<string[]> {
-    return this.api.getCollections().pipe(catchError(() => of([])));
+    return this.api
+      .getCollections()
+      .pipe(catchError(() => of([])))
+      .pipe(share());
   }
 }
