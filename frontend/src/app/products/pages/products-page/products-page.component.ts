@@ -13,13 +13,13 @@ import {
 } from 'rxjs';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { Product } from '../../models/product';
-import { ApiService } from '../../../services/api.service';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-main',
   standalone: true,
   templateUrl: './products-page.component.html',
-  providers: [ApiService],
+  providers: [ProductsService],
   imports: [ReactiveFormsModule, CommonModule, ProductCardComponent],
 })
 export class ProductsPageComponent {
@@ -32,7 +32,7 @@ export class ProductsPageComponent {
   });
 
   constructor(
-    private api: ApiService,
+    private productsService: ProductsService,
     private fb: FormBuilder,
   ) {
     this.products$ = this.getProducts();
@@ -44,14 +44,14 @@ export class ProductsPageComponent {
       startWith(this.searchForm.value),
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((query) => this.api.getProducts(query)),
+      switchMap((query) => this.productsService.getProducts(query)),
       catchError(() => of([])),
       share(),
     );
   }
 
   private getCollections(): Observable<string[]> {
-    return this.api
+    return this.productsService
       .getCollections()
       .pipe(catchError(() => of([])))
       .pipe(share());

@@ -3,19 +3,19 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { ApiService } from '../../../services/api.service';
 import { SetAccount } from '../../account.actions';
 import { AccountState } from '../../account.state';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'account',
-  templateUrl: './account.component.html',
-  providers: [ApiService],
+  templateUrl: './account-page.component.html',
+  providers: [AccountService],
 })
-export class AccountComponent {
+export class AccountPageComponent {
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService,
+    private accountService: AccountService,
     private router: Router,
     private store: Store,
   ) {}
@@ -54,7 +54,7 @@ export class AccountComponent {
     }
 
     this.loading = true;
-    this.apiService
+    this.accountService
       .updateAccount(this.updateForm.value)
       .subscribe((response) => {
         this.store.dispatch(new SetAccount(response.user));

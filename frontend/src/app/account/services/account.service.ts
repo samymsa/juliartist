@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { Product } from '../products/models/product';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
-export class ApiService {
+export class AccountService {
   constructor(private http: HttpClient) {}
 
   login(data: any): Observable<any> {
@@ -18,15 +17,5 @@ export class ApiService {
 
   updateAccount(data: any): Observable<any> {
     return this.http.put(environment.backendUpdateAccount, data);
-  }
-
-  getProducts(query: any): Observable<Product[]> {
-    return this.http.get<Product[]>(environment.backendProducts, {
-      params: query,
-    });
-  }
-
-  getCollections(): Observable<string[]> {
-    return this.http.get<string[]>(environment.backendCollections);
   }
 }
