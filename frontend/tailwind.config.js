@@ -16,8 +16,10 @@ module.exports = {
     themes: [
       {
         juliartist: {
-          primary: "#000000",
+          primary: "#161616",
+          "primary-content": "#ffffff",
           secondary: "#ffffff",
+          "secondary-content": "#161616",
           accent: "#DB0D0D",
           neutral: "#65635F",
           "base-100": "#ffffff",

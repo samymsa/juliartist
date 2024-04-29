@@ -1,12 +1,18 @@
 <div class="hero min-h-[calc(100vh-4rem)]">
   <div class="hero-content text-center">
-    <div class="space-y-6">
-      <h1 class="text-6xl font-bold">
+    <div>
+      <h1 class="my-4 text-6xl font-bold">
         Les dessins de <span class="font-logo font-normal">JuliArtist</span>
       </h1>
       <p class="text-xl font-light italic text-neutral">
         Vos personnages favoris dans un style unique
       </p>
+      <a
+        [routerLink]="['/products']"
+        class="btn btn-primary my-12 hover:bg-transparent hover:text-secondary-content"
+      >
+        Voir les dessins
+      </a>
     </div>
   </div>
 </div>
