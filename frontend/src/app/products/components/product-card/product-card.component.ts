@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { ShoppingCartModule } from '../../../shopping-cart/shopping-cart.module';
 import { Product } from '../../models/product';
-import { ShoppingCartModule } from '../../shopping-cart/shopping-cart.module';
 
 @Component({
   selector: 'app-product-card',

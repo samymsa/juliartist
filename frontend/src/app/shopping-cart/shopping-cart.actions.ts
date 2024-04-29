@@ -1,4 +1,4 @@
-import { Product } from '../models/product';
+import { Product } from '../products/models/product';
 
 export class AddToCart {
   static readonly type = '[ShoppingCart] AddToCart';

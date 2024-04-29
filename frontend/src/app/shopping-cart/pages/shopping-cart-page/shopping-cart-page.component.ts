@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { ShoppingCartState } from '../../shopping-cart.state';
 import { ShoppingCartItem } from '../../models/shopping-cart-item';
+import { ShoppingCartState } from '../../shopping-cart.state';
 
 @Component({
   selector: 'app-shopping-cart',
-  templateUrl: './shopping-cart.component.html',
+  templateUrl: './shopping-cart-page.component.html',
 })
-export class ShoppingCartComponent {
+export class ShoppingCartPageComponent {
   @Select(ShoppingCartState.getItems)
   declare items$: Observable<ShoppingCartItem[]>;
 

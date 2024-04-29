@@ -13,7 +13,7 @@ import {
 } from 'rxjs';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { Product } from '../../models/product';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-main',
