@@ -4,7 +4,7 @@ import { Product } from '../../../products/models/product';
 import { RemoveFromCart } from '../../shopping-cart.actions';
 
 @Component({
-  selector: 'app-shopping-cart-remove',
+  selector: 'shopping-cart-remove',
   templateUrl: './shopping-cart-remove.component.html',
 })
 export class ShoppingCartRemoveComponent {

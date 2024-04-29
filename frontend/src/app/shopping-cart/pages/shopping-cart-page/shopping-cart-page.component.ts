@@ -5,7 +5,7 @@ import { ShoppingCartItem } from '../../models/shopping-cart-item';
 import { ShoppingCartState } from '../../shopping-cart.state';
 
 @Component({
-  selector: 'app-shopping-cart',
+  selector: 'shopping-cart-page',
   templateUrl: './shopping-cart-page.component.html',
 })
 export class ShoppingCartPageComponent {

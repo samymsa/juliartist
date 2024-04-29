@@ -4,7 +4,7 @@ import { Product } from '../../../products/models/product';
 import { AddToCart } from '../../shopping-cart.actions';
 
 @Component({
-  selector: 'app-shopping-cart-add',
+  selector: 'shopping-cart-add',
   templateUrl: './shopping-cart-add.component.html',
 })
 export class ShoppingCartAddComponent {
