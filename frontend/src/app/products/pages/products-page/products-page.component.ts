@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import {
   Observable,
   catchError,
@@ -11,16 +10,13 @@ import {
   startWith,
   switchMap,
 } from 'rxjs';
-import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { Product } from '../../models/product';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
-  selector: 'app-main',
-  standalone: true,
+  selector: 'products-page',
   templateUrl: './products-page.component.html',
   providers: [ProductsService],
-  imports: [ReactiveFormsModule, CommonModule, ProductCardComponent],
 })
 export class ProductsPageComponent {
   products$: Observable<Product[]>;

@@ -35,7 +35,7 @@
   >
     @for (product of products$ | async; track product.id) {
       <li>
-        <app-product-card [product]="product"></app-product-card>
+        <product-card [product]="product"></product-card>
       </li>
     }
   </ul>
