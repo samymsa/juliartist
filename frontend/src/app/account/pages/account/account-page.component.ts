@@ -8,7 +8,7 @@ import { AccountState } from '../../account.state';
 import { AccountService } from '../../services/account.service';
 
 @Component({
-  selector: 'account',
+  selector: 'account-page',
   templateUrl: './account-page.component.html',
   providers: [AccountService],
 })
