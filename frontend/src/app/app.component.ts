@@ -14,5 +14,5 @@ export class AppComponent {
     registerLocaleData(localeFr);
   }
 
-  title = 'my-app';
+  title = 'juliartist';
 }
