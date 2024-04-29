@@ -1,9 +1,9 @@
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { Component } from '@angular/core';
-import { FooterComponent } from './components/footer/footer.component';
-import { MainComponent } from './components/main/main.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './core/components/footer/footer.component';
+import { MainComponent } from './core/components/main/main.component';
+import { NavbarComponent } from './core/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
