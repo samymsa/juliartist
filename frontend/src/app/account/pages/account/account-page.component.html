@@ -21,7 +21,7 @@
   </svg>
   <span>Vos informations ont bien été mises à jour.</span>
 </div>
-<div class="hero min-h-[75vh]">
+<div class="hero min-h-[calc(100vh-4rem)]">
   <div class="hero-content flex-col gap-16 text-center">
     <h1 class="text-5xl font-bold">Mon compte</h1>
     <form class="space-y-4" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
@@ -63,7 +63,7 @@
       </label>
       <button
         type="submit"
-        class="btn btn-neutral w-full"
+        class="btn btn-primary w-full hover:bg-transparent hover:text-secondary-content"
         [disabled]="updateForm.invalid || loading"
       >
         @if (loading) {

@@ -1,5 +1,5 @@
-<div class="hero min-h-[75vh]">
-  <div class="hero-content flex-col gap-16 text-center">
+<div class="hero min-h-[calc(100vh-4rem)]">
+  <div class="hero-content flex-col gap-16 text-center py-12">
     <h1 class="text-5xl font-bold">Créer un compte</h1>
     <form class="space-y-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <input
@@ -83,7 +83,7 @@
       </label>
       <button
         type="submit"
-        class="btn btn-neutral w-full"
+        class="btn btn-primary w-full hover:bg-transparent hover:text-secondary-content"
         [disabled]="registerForm.invalid || loading"
       >
         @if (loading) {
