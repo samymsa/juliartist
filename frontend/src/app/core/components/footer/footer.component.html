@@ -1,10 +1,8 @@
-<footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
+<footer class="footer footer-center rounded bg-base-200 p-10 text-base-content">
   <nav class="grid grid-flow-col gap-4">
-    <a class="link link-hover">Dessins</a>
-    <a class="link link-hover">Collections</a>
-    <a class="link link-hover">A propos de moi</a>
-    <a class="link link-hover">Contact</a>
-  </nav> 
+    <a [routerLink]="['/products']" class="link-hover link">Dessins</a>
+    <a [routerLink]="['/about-me']" class="link-hover link">A propos de moi</a>
+  </nav>
   <aside>
     <p>Copyright © 2024, JuliArtist</p>
   </aside>
