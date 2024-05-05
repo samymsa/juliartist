@@ -2,21 +2,23 @@
   <div class="hero-content flex-col gap-16 text-center py-12">
     <h1 class="text-5xl font-bold">Créer un compte</h1>
     <form class="space-y-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <input
-        type="text"
-        class="input input-bordered w-full"
-        placeholder="Prénom"
-        autofocus
-        autocomplete="given-name"
-        formControlName="firstName"
-      />
-      <input
-        type="text"
-        class="input input-bordered w-full"
-        placeholder="Nom"
-        autocomplete="family-name"
-        formControlName="lastName"
-      />
+      <div class="join join-vertical lg:join-horizontal">
+        <input
+          type="text"
+          class="input input-bordered join-item"
+          placeholder="Prénom"
+          autofocus
+          autocomplete="given-name"
+          formControlName="firstName"
+        />
+        <input
+          type="text"
+          class="input input-bordered join-item"
+          placeholder="Nom"
+          autocomplete="family-name"
+          formControlName="lastName"
+        />
+      </div>
       <label class="input input-bordered flex items-center gap-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
