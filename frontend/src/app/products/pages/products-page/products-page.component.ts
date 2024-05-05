@@ -16,7 +16,6 @@ import { ProductsService } from '../../services/products.service';
 @Component({
   selector: 'products-page',
   templateUrl: './products-page.component.html',
-  providers: [ProductsService],
 })
 export class ProductsPageComponent {
   products$: Observable<Product[]>;

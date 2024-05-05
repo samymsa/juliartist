@@ -8,7 +8,6 @@ import { AccountService } from '../../services/account.service';
 @Component({
   selector: 'account-login',
   templateUrl: './account-login.component.html',
-  providers: [AccountService],
 })
 export class AccountLoginComponent {
   constructor(

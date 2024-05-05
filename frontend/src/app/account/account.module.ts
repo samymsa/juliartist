@@ -8,6 +8,7 @@ import { AccountLinkComponent } from './components/account-link/account-link.com
 import { AccountLoginComponent } from './components/account-login/account-login.component';
 import { AccountRegisterComponent } from './components/account-register/account-register.component';
 import { AccountPageComponent } from './pages/account/account-page.component';
+import { AccountService } from './services/account.service';
 
 @NgModule({
   declarations: [
@@ -23,5 +24,6 @@ import { AccountPageComponent } from './pages/account/account-page.component';
     NgxsModule.forFeature([AccountState]),
   ],
   exports: [AccountLinkComponent],
+  providers: [AccountService],
 })
 export class AccountModule {}

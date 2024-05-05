@@ -5,6 +5,7 @@ import { ShoppingCartModule } from '../shopping-cart/shopping-cart.module';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductsPageComponent } from './pages/products-page/products-page.component';
 import { ProductsRoutingModule } from './products-routing.module';
+import { ProductsService } from './services/products.service';
 
 @NgModule({
   declarations: [ProductCardComponent, ProductsPageComponent],
@@ -14,5 +15,6 @@ import { ProductsRoutingModule } from './products-routing.module';
     ProductsRoutingModule,
     ShoppingCartModule,
   ],
+  providers: [ProductsService],
 })
 export class ProductsModule {}

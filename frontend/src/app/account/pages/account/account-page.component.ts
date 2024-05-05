@@ -10,7 +10,6 @@ import { AccountService } from '../../services/account.service';
 @Component({
   selector: 'account-page',
   templateUrl: './account-page.component.html',
-  providers: [AccountService],
 })
 export class AccountPageComponent {
   constructor(
