@@ -15,7 +15,7 @@
           class="join-item select select-bordered"
           formControlName="collection"
         >
-          <option value="">- Catégorie -</option>
+          <option value="">- Collection -</option>
           @for (collection of collections$ | async; track collection) {
             <option>{{ collection }}</option>
           }
