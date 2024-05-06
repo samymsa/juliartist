@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CreditCard } from '../models/credit-card';
 import { BehaviorSubject } from 'rxjs';
+import { CreditCard } from '../models/credit-card';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class CreditCardService {
       name: 'John Doe',
       number: '1234567890123456',
       expirationDate: '12/24',
-      cvv: '123',
+      ccv: '123',
     },
   ]);
 

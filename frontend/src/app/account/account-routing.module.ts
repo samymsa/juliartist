@@ -5,7 +5,6 @@ import { AccountLoginComponent } from './components/account-login/account-login.
 import { AccountLogoutComponent } from './components/account-logout/account-logout.component';
 import { AccountRegisterComponent } from './components/account-register/account-register.component';
 import { AccountPageComponent } from './pages/account/account-page.component';
-import { AccountPaymentMethodsComponent } from './components/account-payment-methods/account-payment-methods.component';
 
 const routes: Routes = [
   {
@@ -23,8 +22,11 @@ const routes: Routes = [
       },
       {
         path: 'payment-methods',
-        component: AccountPaymentMethodsComponent,
-      }
+        loadChildren: () =>
+          import('../credit-card/credit-card.module').then(
+            (m) => m.CreditCardModule,
+          ),
+      },
     ],
   },
   {

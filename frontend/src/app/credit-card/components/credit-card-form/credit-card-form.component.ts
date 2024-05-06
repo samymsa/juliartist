@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CreditCardService } from '../../services/credit-card.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-credit-card-form',
@@ -9,16 +10,17 @@ import { CreditCardService } from '../../services/credit-card.service';
 })
 export class CreditCardFormComponent {
   form = this.fb.group({
-    name: ['', [Validators.required, Validators.pattern('[\\S\\s]+[\\S]+')]],
+    name: ['', [Validators.required, Validators.pattern('([\\w-]+\\s?)+')]],
     number: ['', [Validators.required, Validators.pattern('\\d{16}')]],
     expirationDate: [
       '',
       [Validators.required, Validators.pattern('\\d{2}/\\d{2}')],
     ],
-    cvv: ['', [Validators.required, Validators.pattern('\\d{3}')]],
+    ccv: ['', [Validators.required, Validators.pattern('\\d{3}')]],
   });
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private creditCardService: CreditCardService,
   ) {
@@ -34,9 +36,9 @@ export class CreditCardFormComponent {
       name: this.form.get('name')?.value || '',
       number: this.form.get('number')?.value || '',
       expirationDate: this.form.get('expirationDate')?.value || '',
-      cvv: this.form.get('cvv')?.value || '',
+      ccv: this.form.get('ccv')?.value || '',
     };
     this.creditCardService.add(creditCard);
-    this.form.reset();
+    this.router.navigate(['/account/payment-methods']);
   }
 }
