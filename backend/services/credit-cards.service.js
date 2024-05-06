@@ -8,7 +8,6 @@ function getCreditCards(query) {
 function addCreditCard(creditCard) {
   const userId = parseInt(creditCard.userId);
   creditCard.userId = userId;
-  console.log(creditCard);
   creditCards.push(creditCard);
   return creditCard;
 }

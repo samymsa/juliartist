@@ -3,7 +3,6 @@ function validateUser(user) {
 }
 
 function createUser(user) {
-  console.log("Creating user", user);
   let createdUser = {
     id: 1,
     ...user,
@@ -14,12 +13,10 @@ function createUser(user) {
 }
 
 function updateUser(user) {
-  console.log("Updating user", user);
   return user;
 }
 
 function getUserByEmail(email) {
-  console.log("Getting user by email", email);
   return {
     id: 1,
     email,
