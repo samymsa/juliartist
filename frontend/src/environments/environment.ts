@@ -6,4 +6,5 @@ export const environment = {
   backendUpdateAccount: '/api/auth/update',
   backendProducts: '/api/products',
   backendCollections: '/api/collections',
+  backendCreditCards: '/api/credit-cards',
 };

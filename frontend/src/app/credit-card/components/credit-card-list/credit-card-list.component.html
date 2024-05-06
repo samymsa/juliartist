@@ -17,7 +17,7 @@
     </thead>
     <tbody>
       @for (card of creditCards$ | async; track card.number) {
-        <tr app-credit-card [card]="card"></tr>
+        <tr app-credit-card [card]="card" (delete)="refresh()"></tr>
       }
     </tbody>
   </table>

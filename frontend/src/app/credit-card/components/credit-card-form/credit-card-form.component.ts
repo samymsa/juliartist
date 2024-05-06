@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CreditCardService } from '../../services/credit-card.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { AccountState } from '../../../account/account.state';
+import { Account } from '../../../account/models/account';
+import { CreditCardService } from '../../services/credit-card.service';
 
 @Component({
   selector: 'app-credit-card-form',
@@ -19,10 +22,13 @@ export class CreditCardFormComponent {
     ccv: ['', [Validators.required, Validators.pattern('\\d{3}')]],
   });
 
+  account = this.store.selectSnapshot<Account | null>(AccountState.getAccount);
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private creditCardService: CreditCardService,
+    private store: Store,
   ) {
     this.fb = fb;
     this.creditCardService = creditCardService;
@@ -33,12 +39,14 @@ export class CreditCardFormComponent {
       return;
     }
     const creditCard = {
+      userId: this.account?.id || '',
       name: this.form.get('name')?.value || '',
       number: this.form.get('number')?.value || '',
       expirationDate: this.form.get('expirationDate')?.value || '',
       ccv: this.form.get('ccv')?.value || '',
     };
-    this.creditCardService.add(creditCard);
-    this.router.navigate(['/account/payment-methods']);
+    this.creditCardService.add(creditCard).subscribe(() => {
+      this.router.navigate(['/account/payment-methods']);
+    });
   }
 }

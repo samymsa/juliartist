@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { AccountState } from '../../../account/account.state';
+import { Account } from '../../../account/models/account';
 import { CreditCardService } from '../../services/credit-card.service';
 
 @Component({
@@ -6,7 +10,22 @@ import { CreditCardService } from '../../services/credit-card.service';
   templateUrl: './credit-card-list.component.html',
 })
 export class CreditCardListComponent {
-  creditCards$ = this.creditCardService.getCreditCards();
+  declare creditCards$: Observable<any>;
 
-  constructor(private creditCardService: CreditCardService) {}
+  account = this.store.selectSnapshot<Account | null>(AccountState.getAccount);
+
+  constructor(
+    private creditCardService: CreditCardService,
+    private store: Store,
+  ) {}
+
+  ngOnInit() {
+    this.refresh();
+  }
+
+  refresh() {
+    this.creditCards$ = this.creditCardService.getCreditCards({
+      userId: this.account?.id || '',
+    });
+  }
 }
