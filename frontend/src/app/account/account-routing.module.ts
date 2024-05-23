@@ -4,12 +4,14 @@ import { AccountDetailsComponent } from './components/account-details/account-de
 import { AccountLoginComponent } from './components/account-login/account-login.component';
 import { AccountLogoutComponent } from './components/account-logout/account-logout.component';
 import { AccountRegisterComponent } from './components/account-register/account-register.component';
+import { isAuthenticatedGuard } from './guards/is-authenticated.guard';
 import { AccountPageComponent } from './pages/account/account-page.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AccountPageComponent,
+    canActivate: [isAuthenticatedGuard],
     children: [
       {
         path: '',
