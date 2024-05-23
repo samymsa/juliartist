@@ -15,10 +15,7 @@ export class CreditCardFormComponent {
   form = this.fb.group({
     name: ['', [Validators.required, Validators.pattern('([\\w-]+\\s?)+')]],
     number: ['', [Validators.required, Validators.pattern('\\d{16}')]],
-    expirationDate: [
-      '',
-      [Validators.required, Validators.pattern('\\d{2}/\\d{2}')],
-    ],
+    expirationDate: ['', [Validators.required]],
     ccv: ['', [Validators.required, Validators.pattern('\\d{3}')]],
   });
 
@@ -38,6 +35,7 @@ export class CreditCardFormComponent {
     if (this.form.invalid) {
       return;
     }
+
     const creditCard = {
       userId: this.account?.id || '',
       name: this.form.get('name')?.value || '',
@@ -45,6 +43,7 @@ export class CreditCardFormComponent {
       expirationDate: this.form.get('expirationDate')?.value || '',
       ccv: this.form.get('ccv')?.value || '',
     };
+
     this.creditCardService.add(creditCard).subscribe(() => {
       this.router.navigate(['/account/payment-methods']);
     });
