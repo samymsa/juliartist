@@ -8,14 +8,14 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   login(data: any): Observable<any> {
-    return this.http.post(environment.backendLogin, data);
+    return this.http.post(environment.backendAuth.login, data);
   }
 
   register(data: any): Observable<any> {
-    return this.http.post(environment.backendRegister, data);
+    return this.http.post(environment.backendAuth.register, data);
   }
 
   updateAccount(data: any): Observable<any> {
-    return this.http.put(environment.backendUpdateAccount, data);
+    return this.http.put(environment.backendAuth.updateAccount, data);
   }
 }
