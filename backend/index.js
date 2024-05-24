@@ -1,3 +1,14 @@
+const db = require("./models");
+db.sequelize
+  .sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+    process.exit(1);
+  });
+
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
