@@ -4,6 +4,10 @@
   (ngSubmit)="onSubmit()"
 >
   <h1 class="mb-8 text-5xl font-bold">Connexion</h1>
+  @if (getErrorMessage("")) {
+    <small class="text-error">{{ getErrorMessage("") }}</small>
+  }
+
   <label class="input input-bordered flex items-center gap-2">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +31,12 @@
       autocomplete="username"
       formControlName="email"
     />
+
+    @if (getErrorMessage("email")) {
+      <small class="text-error">{{ getErrorMessage("email") }}</small>
+    }
   </label>
+
   <label class="input input-bordered flex items-center gap-2">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +57,12 @@
       autocomplete="current-password"
       formControlName="password"
     />
+
+    @if (getErrorMessage("password")) {
+      <small class="text-error">{{ getErrorMessage("password") }}</small>
+    }
   </label>
+
   <button
     type="submit"
     class="btn btn-primary w-full hover:bg-transparent hover:text-secondary-content"

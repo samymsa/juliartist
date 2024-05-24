@@ -30,9 +30,37 @@ export class AccountLoginComponent {
     }
 
     this.loading = true;
-    this.accountService.login(this.loginForm.value).subscribe((response) => {
-      this.store.dispatch(new SetAccount(response.user));
-      this.router.navigate(['/']);
+    this.accountService.login(this.loginForm.value).subscribe({
+      next: (response) => {
+        this.store.dispatch(new SetAccount(response.user));
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        this.loginForm.setErrors({ invalidCredentials: true });
+        this.loading = false;
+      },
     });
+  }
+
+  public getErrorMessage(fieldName: string): string | null {
+    const field = fieldName ? this.loginForm.get(fieldName) : this.loginForm;
+
+    if (!field || !field.errors || !field.touched || !field.dirty) {
+      return null;
+    }
+
+    if (field.errors['required']) {
+      return 'Ce champ est obligatoire';
+    }
+
+    if (field.errors['email']) {
+      return `L'email est incorrect`;
+    }
+
+    if (field.errors['invalidCredentials']) {
+      return 'Les identifiants sont incorrects';
+    }
+
+    return null;
   }
 }
