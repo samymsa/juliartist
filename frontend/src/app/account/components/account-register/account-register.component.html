@@ -4,6 +4,10 @@
   (ngSubmit)="onSubmit()"
 >
   <h1 class="mb-8 text-5xl font-bold">Créer un compte</h1>
+  @if (fes.getMessage(registerForm, "")) {
+    <small class="text-error">{{ fes.getMessage(registerForm, "") }}</small>
+  }
+
   <div class="join">
     <input
       type="text"
@@ -19,6 +23,19 @@
       autocomplete="family-name"
       formControlName="lastName"
     />
+  </div>
+  <div class="!mt-1 grid grid-cols-2 text-left">
+    @if (fes.getMessage(registerForm, "firstName")) {
+      <small class="col-start-1 text-error">{{
+        fes.getMessage(registerForm, "firstName")
+      }}</small>
+    }
+
+    @if (fes.getMessage(registerForm, "lastName")) {
+      <small class="col-start-2 text-error">{{
+        fes.getMessage(registerForm, "lastName")
+      }}</small>
+    }
   </div>
   <label class="input input-bordered flex items-center gap-2">
     <svg
@@ -41,6 +58,11 @@
       autocomplete="username"
       formControlName="email"
     />
+    @if (fes.getMessage(registerForm, "email")) {
+      <small class="text-error">{{
+        fes.getMessage(registerForm, "email")
+      }}</small>
+    }
   </label>
   <label class="input input-bordered flex items-center gap-2">
     <svg
@@ -62,6 +84,11 @@
       autocomplete="new-password"
       formControlName="password"
     />
+    @if (fes.getMessage(registerForm, "password")) {
+      <small class="text-error">{{
+        fes.getMessage(registerForm, "password")
+      }}</small>
+    }
   </label>
   <label class="input input-bordered flex items-center gap-2">
     <svg
@@ -83,6 +110,11 @@
       autocomplete="new-password"
       formControlName="passwordConfirm"
     />
+    @if (fes.getMessage(registerForm, "passwordConfirm")) {
+      <small class="text-error">{{
+        fes.getMessage(registerForm, "passwordConfirm")
+      }}</small>
+    }
   </label>
   <button
     type="submit"

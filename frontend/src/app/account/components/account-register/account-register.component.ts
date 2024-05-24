@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { FormErrorService } from '../../../core/services/form-error.service';
 import { SetAccount } from '../../account.actions';
-import { passwordMatchValidator } from '../../validators/password-match.validator';
 import { AccountService } from '../../services/account.service';
+import { passwordMatchValidator } from '../../validators/password-match.validator';
 
 @Component({
   selector: 'account-register',
@@ -12,6 +13,7 @@ import { AccountService } from '../../services/account.service';
 })
 export class AccountRegisterComponent {
   constructor(
+    protected fes: FormErrorService,
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private router: Router,
@@ -39,9 +41,15 @@ export class AccountRegisterComponent {
     }
 
     this.loading = true;
-    this.accountService.register(this.registerForm.value).subscribe((response) => {
-      this.store.dispatch(new SetAccount(response.user));
-      this.router.navigate(['/']);
+    this.accountService.register(this.registerForm.value).subscribe({
+      next: (response) => {
+        this.store.dispatch(new SetAccount(response.user));
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        this.registerForm.setErrors({ unknown: true });
+        this.loading = false;
+      },
     });
   }
 }
