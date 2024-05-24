@@ -4,8 +4,8 @@
   (ngSubmit)="onSubmit()"
 >
   <h1 class="mb-8 text-5xl font-bold">Connexion</h1>
-  @if (getErrorMessage("")) {
-    <small class="text-error">{{ getErrorMessage("") }}</small>
+  @if (fes.getMessage(loginForm, "")) {
+    <small class="text-error">{{ fes.getMessage(loginForm, "") }}</small>
   }
 
   <label class="input input-bordered flex items-center gap-2">
@@ -32,8 +32,8 @@
       formControlName="email"
     />
 
-    @if (getErrorMessage("email")) {
-      <small class="text-error">{{ getErrorMessage("email") }}</small>
+    @if (fes.getMessage(loginForm, "email")) {
+      <small class="text-error">{{ fes.getMessage(loginForm, "email") }}</small>
     }
   </label>
 
@@ -58,8 +58,8 @@
       formControlName="password"
     />
 
-    @if (getErrorMessage("password")) {
-      <small class="text-error">{{ getErrorMessage("password") }}</small>
+    @if (fes.getMessage(loginForm, "password")) {
+      <small class="text-error">{{ fes.getMessage(loginForm, "password") }}</small>
     }
   </label>
 
