@@ -1,26 +1,32 @@
+const { users } = require("../models");
+
 function validateUser(user) {
   return user?.email && user?.password;
 }
 
-function createUser(user) {
-  let createdUser = {
-    id: 1,
-    ...user,
-  };
-  delete createdUser.password;
-
-  return user;
+async function createUser(user) {
+  const createdUser = await users.create(user);
+  return createdUser;
 }
 
-function updateUser(user) {
-  return user;
+async function updateUser(user) {
+  const updatedUser = await users.update(user, {
+    where: {
+      id: user.id,
+    },
+  });
+
+  return updatedUser;
 }
 
-function getUserByEmail(email) {
-  return {
-    id: 1,
-    email,
-  };
+async function getUserByEmail(email) {
+  const user = await users.findOne({
+    where: {
+      email,
+    },
+  });
+
+  return user;
 }
 
 module.exports = {

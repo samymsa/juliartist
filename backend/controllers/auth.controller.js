@@ -8,34 +8,38 @@ function generateAccessToken(user) {
 
 function login(req, res) {
   const user = req.body;
+  usersService.getUserByEmail(user.email).then((fullUser) => {
+    if (!fullUser || fullUser.password !== user.password) {
+      return res.status(401).send({
+        error: "Invalid email or password",
+      });
+    }
 
-  if (!usersService.validateUser(user)) {
-    return res.status(401).send({
-      error: "Invalid email or password",
+    const accessToken = generateAccessToken({
+      id: fullUser.id,
+      email: fullUser.email,
     });
-  }
 
-  delete user.password; // Don't store password in token
-  const accessToken = generateAccessToken(user);
-  const fullUser = usersService.getUserByEmail(user.email);
-
-  res.setHeader("Authorization", `Bearer ${accessToken}`);
-  res.send({
-    user: fullUser,
+    res.setHeader("Authorization", `Bearer ${accessToken}`);
+    res.send({
+      user: fullUser,
+    });
   });
 }
 
 function register(req, res) {
   const user = req.body;
-  usersService.createUser(user);
-  login(req, res);
+  usersService.createUser(user).then(() => {
+    login(req, res);
+  });
 }
 
 function update(req, res) {
   const user = req.body;
-  const updatedUser = usersService.updateUser(user);
-  res.send({
-    user: updatedUser,
+  usersService.updateUser(user).then((updatedUser) => {
+    res.send({
+      user: updatedUser,
+    });
   });
 }
 
