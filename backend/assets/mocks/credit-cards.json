@@ -1,0 +1,9 @@
+[
+  {
+    "userId": 1,
+    "name": "John Doe",
+    "number": "1111222233334444",
+    "ccv": "123",
+    "expirationDate": "12/24"
+  }
+]

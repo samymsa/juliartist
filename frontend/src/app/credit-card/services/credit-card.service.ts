@@ -1,30 +1,25 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { CreditCard } from '../models/credit-card';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CreditCardService {
-  private creditCards: BehaviorSubject<CreditCard[]> = new BehaviorSubject([
-    {
-      name: 'John Doe',
-      number: '1234567890123456',
-      expirationDate: '12/24',
-      cvv: '123',
-    },
-  ]);
+  constructor(private http: HttpClient) {}
 
-  getCreditCards() {
-    return this.creditCards.asObservable();
+  getCreditCards(query: any) {
+    return this.http.get<CreditCard[]>(environment.backendCreditCards, {
+      params: query,
+    });
   }
 
-  add(creditCard: CreditCard) {
-    this.creditCards.next([...this.creditCards.getValue(), creditCard]);
+  add(creditCard: any) {
+    return this.http.post(environment.backendCreditCards, creditCard);
   }
 
-  delete(number: string) {
-    const current = this.creditCards.getValue();
-    this.creditCards.next(current.filter((card) => card.number !== number));
+  delete(id: string) {
+    return this.http.delete(`${environment.backendCreditCards}/${id}`);
   }
 }

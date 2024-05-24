@@ -4,13 +4,13 @@ import { NgxsModule } from '@ngxs/store';
 import { ShoppingCartAddComponent } from './components/shopping-cart-add/shopping-cart-add.component';
 import { ShoppingCartLinkComponent } from './components/shopping-cart-link/shopping-cart-link.component';
 import { ShoppingCartRemoveComponent } from './components/shopping-cart-remove/shopping-cart-remove.component';
-import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ShoppingCartPageComponent } from './pages/shopping-cart-page/shopping-cart-page.component';
 import { ShoppingCartRoutingModule } from './shopping-cart-routing.module';
 import { ShoppingCartState } from './shopping-cart.state';
 
 @NgModule({
   declarations: [
-    ShoppingCartComponent,
+    ShoppingCartPageComponent,
     ShoppingCartLinkComponent,
     ShoppingCartAddComponent,
     ShoppingCartRemoveComponent,
@@ -21,7 +21,7 @@ import { ShoppingCartState } from './shopping-cart.state';
     NgxsModule.forFeature([ShoppingCartState]),
   ],
   exports: [
-    ShoppingCartComponent,
+    ShoppingCartPageComponent,
     ShoppingCartLinkComponent,
     ShoppingCartAddComponent,
   ],

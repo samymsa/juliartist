@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ShoppingCartState } from '../../shopping-cart.state';
 
 @Component({
-  selector: 'app-shopping-cart-link',
+  selector: 'shopping-cart-link',
   templateUrl: './shopping-cart-link.component.html',
 })
 export class ShoppingCartLinkComponent {

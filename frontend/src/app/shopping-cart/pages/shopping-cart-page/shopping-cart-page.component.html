@@ -1,0 +1,61 @@
+<div class="space-y-12 p-8">
+  <header class="flex justify-around max-sm:flex-col gap-8 items-center">
+    <h1 class="text-5xl font-bold">Mon panier</h1>
+    <a [routerLink]="['/products']" class="btn btn-outline"
+      >Continuer mes achats</a
+    >
+  </header>
+  <table class="table mb-8">
+    <thead>
+      <tr>
+        <th>Produit</th>
+        <th>Quantité</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of items$ | async; track item.product.id) {
+        <tr>
+          <td>
+            <div class="flex gap-4 max-sm:flex-col">
+              <img
+                src="https://picsum.photos/150?cache={{ item.product.id }}"
+                alt="{{ item.product.title }}"
+                class="h-16 w-16 object-cover"
+              />
+              <div>
+                <h2 class="font-bold">{{ item.product.title }}</h2>
+                <p class="text-sm font-light italic text-gray-500">
+                  {{ item.product.collection }}
+                </p>
+                <p>{{ item.product.price | currency: "EUR" }}</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="flex items-center gap-4">
+              {{ item.quantity }}
+              <shopping-cart-remove
+                [product]="item.product"
+              ></shopping-cart-remove>
+            </div>
+          </td>
+          <td>
+            {{ item.quantity * item.product.price | currency: "EUR" }}
+          </td>
+        </tr>
+      }
+    </tbody>
+    <tfoot class="text-sm text-black">
+      <tr>
+        <td>Total</td>
+        <td>
+          {{ totalQuantity$ | async }}
+        </td>
+        <td>
+          {{ totalPrice$ | async | currency: "EUR" }}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

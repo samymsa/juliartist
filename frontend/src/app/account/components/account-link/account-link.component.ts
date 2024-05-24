@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AccountState } from '../../account.state';
 
 @Component({
-  selector: 'app-account-link',
+  selector: 'account-link',
   templateUrl: './account-link.component.html',
 })
 export class AccountLinkComponent {

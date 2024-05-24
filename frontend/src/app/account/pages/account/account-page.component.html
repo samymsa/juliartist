@@ -1,0 +1,22 @@
+<header class="mx-auto my-8 max-w-lg space-y-8 text-center">
+  <h1 class="text-5xl font-bold">Mon compte</h1>
+  <div role="tablist" class="tabs tabs-bordered">
+    <a
+      role="tab"
+      class="tab hover:tab-active transition"
+      [routerLink]="['/account/details']"
+      [routerLinkActive]="['tab-active']"
+      >Mes informations</a
+    >
+    <a
+      role="tab"
+      class="tab hover:tab-active transition"
+      [routerLink]="['/account/payment-methods']"
+      [routerLinkActive]="['tab-active']"
+      >Mes moyens de paiement</a
+    >
+  </div>
+</header>
+<section class="mx-8">
+  <router-outlet></router-outlet>
+</section>

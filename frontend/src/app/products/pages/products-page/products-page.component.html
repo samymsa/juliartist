@@ -1,0 +1,42 @@
+<div class="hero min-h-64">
+  <div class="hero-content flex-col gap-16 text-center">
+    <h1 class="text-5xl font-bold">Dessins</h1>
+    <form [formGroup]="searchForm">
+      <div class="join join-vertical md:join-horizontal">
+        <input
+          type="text"
+          name="title"
+          class="input join-item input-bordered"
+          placeholder="Rechercher..."
+          formControlName="title"
+        />
+
+        <select
+          class="join-item select select-bordered"
+          formControlName="collection"
+        >
+          <option value="">- Collection -</option>
+          @for (collection of collections$ | async; track collection) {
+            <option>{{ collection }}</option>
+          }
+        </select>
+      </div>
+    </form>
+    @if (products$ | async; as products) {
+      <p>{{ products.length }} résultat(s)</p>
+    } @else {
+      <span class="loading loading-dots loading-lg"></span>
+    }
+  </div>
+</div>
+<div class="my-8 flex justify-center">
+  <ul
+    class="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
+  >
+    @for (product of products$ | async; track product.id) {
+      <li>
+        <product-card [product]="product"></product-card>
+      </li>
+    }
+  </ul>
+</div>

@@ -1,20 +1,18 @@
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { Component } from '@angular/core';
-import { FooterComponent } from './components/footer/footer.component';
-import { MainComponent } from './components/main/main.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { CoreModule } from './core/core.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  imports: [NavbarComponent, MainComponent, FooterComponent],
+  imports: [CoreModule],
 })
 export class AppComponent {
   constructor() {
     registerLocaleData(localeFr);
   }
 
-  title = 'my-app';
+  title = 'juliartist';
 }

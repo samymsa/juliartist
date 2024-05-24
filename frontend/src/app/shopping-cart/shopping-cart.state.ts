@@ -39,7 +39,6 @@ export class ShoppingCartState {
     { payload }: AddToCart,
   ) {
     const state = getState();
-    console.log('state', state);
     const item = state.items.find((i) => i.product.id === payload.id);
 
     if (item) {
