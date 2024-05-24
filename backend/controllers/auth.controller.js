@@ -29,13 +29,31 @@ function login(req, res) {
 
 function register(req, res) {
   const user = req.body;
-  usersService.createUser(user).then(() => {
-    login(req, res);
-  });
+  usersService
+    .createUser(user)
+    .then(() => {
+      login(req, res);
+    })
+    .catch((err) => {
+      res.status(400).send({
+        error: err.message,
+      });
+    });
 }
 
 function update(req, res) {
   const user = req.body;
+  const token = req.headers.authorization.split(" ")[1];
+  const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET);
+
+  if (!decoded?.id) {
+    return res.status(401).send({
+      error: "Unauthorized",
+    });
+  }
+
+  user.id = decoded.id;
+
   usersService.updateUser(user).then((updatedUser) => {
     res.send({
       user: updatedUser,

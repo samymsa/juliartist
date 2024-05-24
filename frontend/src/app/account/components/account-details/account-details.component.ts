@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { FormErrorService } from '../../../core/services/form-error.service';
 import { SetAccount } from '../../account.actions';
 import { AccountState } from '../../account.state';
 import { AccountService } from '../../services/account.service';
@@ -13,6 +14,7 @@ import { passwordMatchValidator } from '../../validators/password-match.validato
 })
 export class AccountDetailsComponent {
   constructor(
+    protected fes: FormErrorService,
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private store: Store,
@@ -24,8 +26,8 @@ export class AccountDetailsComponent {
   updateForm = this.formBuilder.group(
     {
       email: ['', [Validators.required, Validators.email]],
-      password: [''],
-      passwordConfirm: [''],
+      password: ['', Validators.required],
+      passwordConfirm: ['', Validators.required],
       firstName: [''],
       lastName: [''],
       address: [''],
@@ -52,15 +54,19 @@ export class AccountDetailsComponent {
     }
 
     this.loading = true;
-    this.accountService
-      .updateAccount(this.updateForm.value)
-      .subscribe((response) => {
+    this.accountService.updateAccount(this.updateForm.value).subscribe({
+      next: (response) => {
         this.store.dispatch(new SetAccount(response.user));
         this.loading = false;
         this.success = true;
         setTimeout(() => {
           this.success = false;
         }, 2000);
-      });
+      },
+      error: (error) => {
+        this.updateForm.setErrors({ unknown: true });
+        this.loading = false;
+      },
+    });
   }
 }

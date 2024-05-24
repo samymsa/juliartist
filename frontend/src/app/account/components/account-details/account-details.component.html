@@ -28,6 +28,10 @@
 >
   <section class="space-y-4">
     <h2 class="text-xl font-bold">Informations de connexion</h2>
+    @if (fes.getMessage(updateForm, "")) {
+      <small class="text-error">{{ fes.getMessage(updateForm, "") }}</small>
+    }
+
     <label class="input input-bordered flex items-center gap-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +53,12 @@
         autocomplete="username"
         formControlName="email"
       />
+
+      @if (fes.getMessage(updateForm, "email")) {
+        <small class="text-error">{{
+          fes.getMessage(updateForm, "email")
+        }}</small>
+      }
     </label>
 
     <label class="input input-bordered flex items-center gap-2">
@@ -71,6 +81,12 @@
         autocomplete="new-password"
         formControlName="password"
       />
+
+      @if (fes.getMessage(updateForm, "password")) {
+        <small class="text-error">{{
+          fes.getMessage(updateForm, "password")
+        }}</small>
+      }
     </label>
     <label class="input input-bordered flex items-center gap-2">
       <svg
@@ -92,6 +108,12 @@
         autocomplete="new-password"
         formControlName="passwordConfirm"
       />
+
+      @if (fes.getMessage(updateForm, "passwordConfirm")) {
+        <small class="text-error">{{
+          fes.getMessage(updateForm, "passwordConfirm")
+        }}</small>
+      }
     </label>
   </section>
 
@@ -112,6 +134,19 @@
         autocomplete="family-name"
         formControlName="lastName"
       />
+    </div>
+    <div class="!mt-1 grid grid-cols-2 text-left">
+      @if (fes.getMessage(updateForm, "firstName")) {
+        <small class="col-start-1 text-error">{{
+          fes.getMessage(updateForm, "firstName")
+        }}</small>
+      }
+  
+      @if (fes.getMessage(updateForm, "lastName")) {
+        <small class="col-start-2 text-error">{{
+          fes.getMessage(updateForm, "lastName")
+        }}</small>
+      }
     </div>
 
     <input

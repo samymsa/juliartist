@@ -1,9 +1,5 @@
 const { users } = require("../models");
 
-function validateUser(user) {
-  return user?.email && user?.password;
-}
-
 async function createUser(user) {
   const createdUser = await users.create(user);
   return createdUser;
@@ -30,7 +26,6 @@ async function getUserByEmail(email) {
 }
 
 module.exports = {
-  validateUser,
   createUser,
   updateUser,
   getUserByEmail,
