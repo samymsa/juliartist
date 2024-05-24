@@ -1,5 +1,5 @@
 <div class="space-y-12 p-8">
-  <header class="flex justify-around max-sm:flex-col gap-8 items-center">
+  <header class="flex items-center justify-around gap-8 max-sm:flex-col">
     <h1 class="text-5xl font-bold">Mon panier</h1>
     <a [routerLink]="['/products']" class="btn btn-outline"
       >Continuer mes achats</a
@@ -19,7 +19,7 @@
           <td>
             <div class="flex gap-4 max-sm:flex-col">
               <img
-                src="https://picsum.photos/150?cache={{ item.product.id }}"
+                src="https://picsum.photos/seed/{{ item.product.id }}/150"
                 alt="{{ item.product.title }}"
                 class="h-16 w-16 object-cover"
               />
