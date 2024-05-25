@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { FormErrorService } from '../../../core/services/form-error.service';
 import { SetAccount } from '../../account.actions';
+import { Account } from '../../models/account';
 import { AccountService } from '../../services/account.service';
 
 @Component({
@@ -32,7 +33,13 @@ export class AccountLoginComponent {
     }
 
     this.loading = true;
-    this.accountService.login(this.loginForm.value).subscribe({
+
+    const account: Partial<Account> = {
+      email: this.loginForm.value.email!,
+      password: this.loginForm.value.password!,
+    };
+
+    this.accountService.login(account).subscribe({
       next: (response) => {
         this.store.dispatch(new SetAccount(response.user));
         this.router.navigate(['/']);

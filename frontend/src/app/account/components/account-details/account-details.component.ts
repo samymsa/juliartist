@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { FormErrorService } from '../../../core/services/form-error.service';
 import { SetAccount } from '../../account.actions';
 import { AccountState } from '../../account.state';
+import { Account } from '../../models/account';
 import { AccountService } from '../../services/account.service';
-import { passwordMatchValidator } from '../../validators/password-match.validator';
 
 @Component({
   selector: 'account-details',
@@ -23,38 +23,39 @@ export class AccountDetailsComponent {
   loading = false;
   success = false;
 
-  updateForm = this.formBuilder.group(
-    {
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      passwordConfirm: ['', Validators.required],
-      firstName: [''],
-      lastName: [''],
-      address: [''],
-      postalCode: [''],
-      city: [''],
-    },
-    {
-      validators: passwordMatchValidator,
-    },
-  );
+  form = this.formBuilder.group({
+    firstName: [''],
+    lastName: [''],
+    address: [''],
+    postalCode: [''],
+    city: [''],
+  });
 
   @Select(AccountState.getAccount)
   declare account$: Observable<any>;
 
   ngOnInit(): void {
     this.account$.subscribe((account) => {
-      this.updateForm.patchValue(account);
+      this.form.patchValue(account);
     });
   }
 
   onSubmit(): void {
-    if (this.updateForm.invalid) {
+    if (this.form.invalid) {
       return;
     }
 
     this.loading = true;
-    this.accountService.updateAccount(this.updateForm.value).subscribe({
+
+    const account: Partial<Account> = {
+      firstName: this.form.value.firstName!,
+      lastName: this.form.value.lastName!,
+      address: this.form.value.address!,
+      postalCode: this.form.value.postalCode!,
+      city: this.form.value.city!,
+    };
+
+    this.accountService.updateAccount(account).subscribe({
       next: (response) => {
         this.store.dispatch(new SetAccount(response.user));
         this.loading = false;
@@ -64,7 +65,7 @@ export class AccountDetailsComponent {
         }, 2000);
       },
       error: (error) => {
-        this.updateForm.setErrors({ unknown: true });
+        this.form.setErrors({ unknown: true });
         this.loading = false;
       },
     });

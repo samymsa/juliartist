@@ -15,6 +15,11 @@ async function updateUser(user) {
   return updatedUser;
 }
 
+async function getUserById(id) {
+  const user = await users.findByPk(id);
+  return user;
+}
+
 async function getUserByEmail(email) {
   const user = await users.findOne({
     where: {
@@ -28,5 +33,6 @@ async function getUserByEmail(email) {
 module.exports = {
   createUser,
   updateUser,
+  getUserById,
   getUserByEmail,
 };

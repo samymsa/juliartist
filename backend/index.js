@@ -1,6 +1,6 @@
 const db = require("./models");
 db.sequelize
-  .sync()
+  .sync({ alter: true })
   .then(() => {
     console.log("Synced db.");
   })

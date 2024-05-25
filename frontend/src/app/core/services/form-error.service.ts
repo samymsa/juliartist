@@ -12,13 +12,14 @@ export class FormErrorService {
     passwordMatch: 'Les mots de passe ne correspondent pas',
     minlength: 'Ce champ doit contenir au moins {requiredLength} caractères',
     maxlength: 'Ce champ doit contenir au maximum {requiredLength} caractères',
+    pattern: 'Le format est invalide',
     unknown: 'Une erreur est survenue',
   };
 
   public getMessage(form: AbstractControl, fieldName: string): string | null {
     const field = fieldName ? form.get(fieldName) : form;
 
-    if (!field || !field.errors || !field.touched || !field.dirty) {
+    if (!field || !field.errors || !field.touched) {
       return null;
     }
 

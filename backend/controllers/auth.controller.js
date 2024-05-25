@@ -29,6 +29,7 @@ function login(req, res) {
 
 function register(req, res) {
   const user = req.body;
+
   usersService
     .createUser(user)
     .then(() => {
@@ -55,8 +56,16 @@ function update(req, res) {
   user.id = decoded.id;
 
   usersService.updateUser(user).then((updatedUser) => {
-    res.send({
-      user: updatedUser,
+    usersService.getUserById(user.id).then((fullUser) => {
+      const accessToken = generateAccessToken({
+        id: fullUser.id,
+        email: fullUser.email,
+      });
+
+      res.setHeader("Authorization", `Bearer ${accessToken}`);
+      res.send({
+        user: fullUser,
+      });
     });
   });
 }
