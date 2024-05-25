@@ -1,11 +1,16 @@
-const products = require("../assets/mocks/products.json");
+// const products = require("../assets/mocks/products.json");
+const { Sequelize, products } = require("../models");
 
-function getProducts({ title, collection }) {
-  return products.filter((product) => {
-    return (
-      (!title || product.title.toLowerCase().includes(title.toLowerCase())) &&
-      (!collection || product.collection === collection)
-    );
+async function getProducts({ title, collection }) {
+  return await products.findAll({
+    where: {
+      ...(title && {
+        title: {
+          [Sequelize.Op.like]: `%${title}%`,
+        },
+      }),
+      ...(collection && { collection }),
+    },
   });
 }
 
