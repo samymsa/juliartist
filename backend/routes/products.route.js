@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { checkJwt } = require("../middlewares/jwt.middleware");
 const productsController = require("../controllers/products.controller");
 
-router.get("", checkJwt, productsController.getProducts);
+router.get("", productsController.getProducts);
 
 module.exports = router;
