@@ -6,6 +6,13 @@ function getProducts(req, res) {
   });
 }
 
+function getCollections(req, res) {
+  productsService.getCollections().then((collections) => {
+    res.send(collections.map((collection) => collection.toJSON().collection));
+  });
+}
+
 module.exports = {
   getProducts,
+  getCollections,
 };

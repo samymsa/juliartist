@@ -14,6 +14,15 @@ async function getProducts({ title, collection }) {
   });
 }
 
+async function getCollections() {
+  return await products.findAll({
+    attributes: [
+      [Sequelize.fn("DISTINCT", Sequelize.col("collection")), "collection"],
+    ],
+  });
+}
+
 module.exports = {
   getProducts,
+  getCollections,
 };

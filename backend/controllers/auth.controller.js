@@ -57,6 +57,8 @@ function update(req, res) {
 
   usersService.updateUser(user).then((updatedUser) => {
     usersService.getUserById(user.id).then((fullUser) => {
+
+      // Generate a new access token since the user's email might have changed
       const accessToken = generateAccessToken({
         id: fullUser.id,
         email: fullUser.email,
