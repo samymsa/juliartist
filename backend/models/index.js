@@ -17,10 +17,15 @@ const db = {
 const modelDefiners = {
   users: require("./user.model"),
   products: require("./product.model"),
+  creditCards: require("./credit-card.model"),
 };
 
 for (const [modelName, modelDefiner] of Object.entries(modelDefiners)) {
   db[modelName] = modelDefiner(sequelize, Sequelize);
 }
+
+// Relationships
+db.users.hasMany(db.creditCards);
+db.creditCards.belongsTo(db.users);
 
 module.exports = db;

@@ -1,32 +1,36 @@
-const creditCards = require("../assets/mocks/credit-cards");
+const { creditCards } = require("../models");
 
-function getCreditCards(query) {
-  const userId = parseInt(query?.userId);
-  return creditCards.filter((creditCard) => creditCard.userId === userId);
+function getCreditCards(userId) {
+  return creditCards.findAll({
+    where: {
+      UserId: userId,
+    },
+  });
+}
+
+function getCreditCardByNumber(number) {
+  return creditCards.findOne({
+    where: {
+      number,
+    },
+  });
 }
 
 function addCreditCard(creditCard) {
-  const userId = parseInt(creditCard.userId);
-  creditCard.userId = userId;
-  creditCards.push(creditCard);
-  return creditCard;
+  return creditCards.create(creditCard);
 }
 
 function deleteCreditCard(number) {
-  const creditCardIndex = creditCards.findIndex(
-    (creditCard) => creditCard.number === number
-  );
-  if (creditCardIndex === -1) {
-    return null;
-  }
-
-  const creditCard = creditCards[creditCardIndex];
-  creditCards.splice(creditCardIndex, 1);
-  return creditCard;
+  return creditCards.destroy({
+    where: {
+      number,
+    },
+  });
 }
 
 module.exports = {
   getCreditCards,
+  getCreditCardByNumber,
   addCreditCard,
   deleteCreditCard,
 };
