@@ -46,20 +46,36 @@ function update(req, res) {
   const user = req.body;
   const jwtUser = req.jwtUser;
 
-  usersService.updateUser(user).then(() => {
-    usersService.getUserById(jwtUser.id).then((fullUser) => {
-      // Generate a new access token since the user's email might have changed
-      const accessToken = generateAccessToken({
-        id: fullUser.id,
-        email: fullUser.email,
-      });
+  user.id = jwtUser.id;
 
-      res.setHeader("Authorization", `Bearer ${accessToken}`);
-      res.send({
-        user: fullUser,
+  usersService
+    .updateUser(user)
+    .then(() => {
+      usersService
+        .getUserById(jwtUser.id)
+        .then((fullUser) => {
+          // Generate a new access token since the user's email might have changed
+          const accessToken = generateAccessToken({
+            id: fullUser.id,
+            email: fullUser.email,
+          });
+
+          res.setHeader("Authorization", `Bearer ${accessToken}`);
+          res.send({
+            user: fullUser,
+          });
+        })
+        .catch((err) => {
+          res.status(500).send({
+            error: err.message,
+          });
+        });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        error: err.message,
       });
     });
-  });
 }
 
 module.exports = {
