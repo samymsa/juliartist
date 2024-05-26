@@ -1,4 +1,4 @@
-import { Account } from "./models/account";
+import { Account } from './models/account';
 
 export class SetAccessToken {
   static readonly type = '[Account] Set Access Token';

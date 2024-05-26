@@ -59,7 +59,9 @@
     />
 
     @if (fes.getMessage(loginForm, "password")) {
-      <small class="text-error">{{ fes.getMessage(loginForm, "password") }}</small>
+      <small class="text-error">{{
+        fes.getMessage(loginForm, "password")
+      }}</small>
     }
   </label>
 
