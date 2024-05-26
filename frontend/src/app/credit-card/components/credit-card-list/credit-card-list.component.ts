@@ -24,9 +24,6 @@ export class CreditCardListComponent {
   }
 
   refresh() {
-    console.log('Account:', this.account);
-    this.creditCards$ = this.creditCardService.getCreditCards({
-      userId: this.account?.id || '',
-    });
+    this.creditCards$ = this.creditCardService.getCreditCards();
   }
 }

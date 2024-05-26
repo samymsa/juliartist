@@ -9,10 +9,8 @@ import { CreditCard } from '../models/credit-card';
 export class CreditCardService {
   constructor(private http: HttpClient) {}
 
-  getCreditCards(query: any) {
-    return this.http.get<CreditCard[]>(environment.backendCreditCards, {
-      params: query,
-    });
+  getCreditCards() {
+    return this.http.get<CreditCard[]>(environment.backendCreditCards);
   }
 
   add(creditCard: any) {
