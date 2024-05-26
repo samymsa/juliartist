@@ -1,8 +1,7 @@
-// const products = require("../assets/mocks/products.json");
 const { Sequelize, products } = require("../models");
 
-async function getProducts({ title, collection }) {
-  return await products.findAll({
+function getProducts({ title, collection }) {
+  return products.findAll({
     where: {
       ...(title && {
         title: {
@@ -14,8 +13,8 @@ async function getProducts({ title, collection }) {
   });
 }
 
-async function getCollections() {
-  return await products.findAll({
+function getCollections() {
+  return products.findAll({
     attributes: [
       [Sequelize.fn("DISTINCT", Sequelize.col("collection")), "collection"],
     ],

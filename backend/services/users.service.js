@@ -1,33 +1,27 @@
 const { users } = require("../models");
 
-async function createUser(user) {
-  const createdUser = await users.create(user);
-  return createdUser;
+function createUser(user) {
+  return users.create(user);
 }
 
-async function updateUser(user) {
-  const updatedUser = await users.update(user, {
+function updateUser(user) {
+  return users.update(user, {
     where: {
       id: user.id,
     },
   });
-
-  return updatedUser;
 }
 
-async function getUserById(id) {
-  const user = await users.findByPk(id);
-  return user;
+function getUserById(id) {
+  return users.findByPk(id);
 }
 
-async function getUserByEmail(email) {
-  const user = await users.findOne({
+function getUserByEmail(email) {
+  return users.findOne({
     where: {
       email,
     },
   });
-
-  return user;
 }
 
 module.exports = {
