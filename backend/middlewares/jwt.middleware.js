@@ -9,12 +9,12 @@ function checkJwt(req, res, next) {
     return res.sendStatus(401);
   }
 
-  jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
+  jwt.verify(token, ACCESS_TOKEN_SECRET, (err, jwtUser) => {
     if (err) {
       return res.sendStatus(403);
     }
 
-    req.user = user;
+    req.jwtUser = jwtUser;
     next();
   });
 }

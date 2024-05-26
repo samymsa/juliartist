@@ -44,20 +44,10 @@ function register(req, res) {
 
 function update(req, res) {
   const user = req.body;
-  const token = req.headers.authorization.split(" ")[1];
-  const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET);
+  const jwtUser = req.jwtUser;
 
-  if (!decoded?.id) {
-    return res.status(401).send({
-      error: "Unauthorized",
-    });
-  }
-
-  user.id = decoded.id;
-
-  usersService.updateUser(user).then((updatedUser) => {
-    usersService.getUserById(user.id).then((fullUser) => {
-
+  usersService.updateUser(user).then(() => {
+    usersService.getUserById(jwtUser.id).then((fullUser) => {
       // Generate a new access token since the user's email might have changed
       const accessToken = generateAccessToken({
         id: fullUser.id,
