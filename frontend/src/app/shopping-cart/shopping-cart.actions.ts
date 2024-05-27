@@ -11,3 +11,7 @@ export class RemoveFromCart {
 
   constructor(public payload: Product) {}
 }
+
+export class ClearCart {
+  static readonly type = '[ShoppingCart] ClearCart';
+}

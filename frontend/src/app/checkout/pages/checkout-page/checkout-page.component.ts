@@ -1,10 +1,11 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AccountState } from '../../../account/account.state';
 import { FormErrorService } from '../../../core/services/form-error.service';
 import { CreditCardService } from '../../../credit-card/services/credit-card.service';
+import { ClearCart } from '../../../shopping-cart/shopping-cart.actions';
 import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
@@ -14,6 +15,7 @@ import { CheckoutService } from '../../services/checkout.service';
 export class CheckoutPageComponent {
   constructor(
     private fb: FormBuilder,
+    private store: Store,
     protected fes: FormErrorService,
     private checkoutService: CheckoutService,
     private creditCardService: CreditCardService,
@@ -59,6 +61,7 @@ export class CheckoutPageComponent {
     this.checkoutService.checkout(this.form.value).subscribe({
       next: () => {
         this.mainErrorMessage = '';
+        this.store.dispatch(new ClearCart());
         this.loading = false;
         this.successModal.nativeElement.showModal();
       },
