@@ -107,38 +107,46 @@
 
   <section class="space-y-4" formGroupName="payment">
     <h2 class="text-xl font-bold">Paiement</h2>
-    <div class="overflow-x-auto">
-      <table class="table table-lg">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Numéro de carte</th>
-            <th>Nom du titulaire</th>
-            <th>Date d'expiration</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (card of creditCards$ | async; track card.number) {
-            <tr class="cursor-pointer" (click)="cardRef.click()">
-              <td>
-                <input
-                  type="radio"
-                  [value]="card.number"
-                  formControlName="creditCardNumber"
-                  #cardRef
-                />
-              </td>
-              <td>
-                <span class="align-text-bottom">•••• •••• ••••</span>
-                {{ card.number | slice: 12 : 16 }}
-              </td>
-              <td>{{ card.name }}</td>
-              <td>{{ card.expirationDate }}</td>
+
+    @if ((creditCards$ | async)?.length === 0) {
+      <p class="text-secondary-content">
+        Vous n'avez pas encore enregistré de moyen de paiement. Ajoutez une
+        carte pour continuer.
+      </p>
+    } @else {
+      <div class="overflow-x-auto">
+        <table class="table table-lg">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Numéro de carte</th>
+              <th>Nom du titulaire</th>
+              <th>Date d'expiration</th>
             </tr>
-          }
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            @for (card of creditCards$ | async; track card.number) {
+              <tr class="cursor-pointer" (click)="cardRef.click()">
+                <td>
+                  <input
+                    type="radio"
+                    [value]="card.number"
+                    formControlName="creditCardNumber"
+                    #cardRef
+                  />
+                </td>
+                <td>
+                  <span class="align-text-bottom">•••• •••• ••••</span>
+                  {{ card.number | slice: 12 : 16 }}
+                </td>
+                <td>{{ card.name }}</td>
+                <td>{{ card.expirationDate }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
 
     <a
       [routerLink]="['/account/payment-methods/add']"
