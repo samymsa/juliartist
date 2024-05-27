@@ -1,0 +1,175 @@
+<dialog class="modal max-sm:modal-bottom" #successModal>
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Merci pour votre achat !</h3>
+    <p class="py-4">
+      Votre commande a bien été enregistrée. Vous pouvez désormais retourner à
+      la page d'accueil.
+    </p>
+    <div class="modal-action">
+      <a [routerLink]="['/']" class="btn btn-outline">Retour à l'accueil</a>
+    </div>
+  </div>
+</dialog>
+<form
+  class="mx-auto my-8 max-w-xl space-y-8"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <h1 class="text-center text-5xl font-bold">Passer la commande</h1>
+
+  @if (mainErrorMessage) {
+    <small class="text-error">{{ mainErrorMessage }}</small>
+  }
+
+  <section class="space-y-4" formGroupName="delivery">
+    <h2 class="text-xl font-bold">Livraison</h2>
+
+    <div class="join w-full max-sm:join-vertical">
+      <label class="input join-item input-bordered flex grow items-center">
+        <input
+          type="text"
+          placeholder="Prénom"
+          autocomplete="given-name"
+          formControlName="firstName"
+        />
+
+        @if (fes.getMessage(form.controls.delivery, "firstName")) {
+          <small class="text-error">{{
+            fes.getMessage(form.controls.delivery, "firstName")
+          }}</small>
+        }
+      </label>
+
+      <label class="input join-item input-bordered flex grow items-center">
+        <input
+          type="text"
+          placeholder="Nom"
+          autocomplete="family-name"
+          formControlName="lastName"
+        />
+
+        @if (fes.getMessage(form.controls.delivery, "lastName")) {
+          <small class="text-error">{{
+            fes.getMessage(form.controls.delivery, "lastName")
+          }}</small>
+        }
+      </label>
+    </div>
+
+    <label class="input input-bordered flex items-center">
+      <input
+        type="text"
+        class="grow"
+        placeholder="Adresse"
+        autocomplete="street-address"
+        formControlName="address"
+      />
+
+      @if (fes.getMessage(form.controls.delivery, "address")) {
+        <small class="text-error">{{
+          fes.getMessage(form.controls.delivery, "address")
+        }}</small>
+      }
+    </label>
+
+    <div class="join w-full max-sm:join-vertical">
+      <label class="input join-item input-bordered flex grow items-center">
+        <input
+          type="text"
+          placeholder="Code postal"
+          autocomplete="postal-code"
+          formControlName="postalCode"
+        />
+
+        @if (fes.getMessage(form.controls.delivery, "postalCode")) {
+          <small class="text-error">{{
+            fes.getMessage(form.controls.delivery, "postalCode")
+          }}</small>
+        }
+      </label>
+
+      <label class="input join-item input-bordered flex grow items-center">
+        <input
+          type="text"
+          placeholder="Ville"
+          autocomplete="address-level2"
+          formControlName="city"
+        />
+
+        @if (fes.getMessage(form.controls.delivery, "city")) {
+          <small class="text-error">{{
+            fes.getMessage(form.controls.delivery, "city")
+          }}</small>
+        }
+      </label>
+    </div>
+  </section>
+
+  <section class="space-y-4" formGroupName="payment">
+    <h2 class="text-xl font-bold">Paiement</h2>
+    <table class="table table-lg">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Numéro de carte</th>
+          <th>Nom du titulaire</th>
+          <th>Date d'expiration</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (card of creditCards$ | async; track card.number) {
+          <tr class="cursor-pointer" (click)="cardRef.click()">
+            <td>
+              <input
+                type="radio"
+                [value]="card.number"
+                formControlName="creditCardNumber"
+                #cardRef
+              />
+            </td>
+            <td>
+              <span class="align-text-bottom">•••• •••• ••••</span>
+              {{ card.number | slice: 12 : 16 }}
+            </td>
+            <td>{{ card.name }}</td>
+            <td>{{ card.expirationDate }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <a
+      [routerLink]="['/account/payment-methods/add']"
+      [queryParams]="{ redirectUrl: '/checkout' }"
+      class="btn btn-outline btn-sm"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-4"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 4.5v15m7.5-7.5h-15"
+        />
+      </svg>
+      Ajouter une carte
+    </a>
+  </section>
+
+  <button
+    type="submit"
+    class="btn btn-primary w-full hover:bg-transparent hover:text-secondary-content"
+    [disabled]="form.invalid || loading"
+  >
+    @if (loading) {
+      <span class="loading loading-dots"></span>
+    } @else {
+      Valider et payer
+    }
+  </button>
+</form>

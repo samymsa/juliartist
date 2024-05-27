@@ -8,4 +8,5 @@ export const environment = {
   backendProducts: '/api/products',
   backendCollections: '/api/products/collections',
   backendCreditCards: '/api/credit-cards',
+  backendCheckout: '/api/checkout',
 };

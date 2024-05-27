@@ -5,7 +5,7 @@ import { AbstractControl } from '@angular/forms';
   providedIn: 'root',
 })
 export class FormErrorService {
-  errorMessages = {
+  errorMessages: Record<string, string> = {
     required: 'Ce champ est obligatoire',
     email: "L'email est incorrect",
     invalidCredentials: 'Les identifiants sont incorrects',
@@ -30,5 +30,9 @@ export class FormErrorService {
     }
 
     return null;
+  }
+
+  public getErrorMessage(key: string): string {
+    return this.errorMessages[key] || this.errorMessages['unknown'];
   }
 }

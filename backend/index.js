@@ -18,6 +18,7 @@ app.use(express.json());
 app.use("/auth", require("./routes/auth.route"));
 app.use("/products", require("./routes/products.route"));
 app.use("/credit-cards", require("./routes/credit-cards.route"));
+app.use("/checkout", require("./routes/checkout.route"));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -22,4 +22,9 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./account/account.module').then((m) => m.AccountModule),
   },
+  {
+    path: 'checkout',
+    loadChildren: () =>
+      import('./checkout/checkout.module').then((m) => m.CheckoutModule),
+  },
 ];

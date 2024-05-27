@@ -1,9 +1,9 @@
-<div class="space-y-12 p-8">
-  <header class="flex items-center justify-around gap-8 max-sm:flex-col">
+<div class="mx-auto max-w-2xl space-y-12 p-8">
+  <header class="flex items-center justify-between gap-8 max-sm:flex-col">
     <h1 class="text-5xl font-bold">Mon panier</h1>
-    <a [routerLink]="['/products']" class="btn btn-outline"
-      >Continuer mes achats</a
-    >
+    <p class="ml-4 text-sm">
+      <a [routerLink]="['/products']" class="link">Continuer mes achats</a>
+    </p>
   </header>
   <table class="table mb-8">
     <thead>
@@ -58,4 +58,10 @@
       </tr>
     </tfoot>
   </table>
+  <a
+    [routerLink]="['/checkout']"
+    class="btn btn-primary ml-4 hover:bg-transparent hover:text-secondary-content"
+  >
+    Passer la commande
+  </a>
 </div>
