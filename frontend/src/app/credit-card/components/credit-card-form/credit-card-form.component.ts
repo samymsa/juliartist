@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { AccountState } from '../../../account/account.state';
 import { Account } from '../../../account/models/account';
@@ -19,6 +19,10 @@ export class CreditCardFormComponent {
     ccv: ['', [Validators.required, Validators.pattern('\\d{3}')]],
   });
 
+  redirectUrl =
+    this.route.snapshot.queryParams['redirectUrl'] ||
+    '/account/payment-methods';
+
   account = this.store.selectSnapshot<Account | null>(AccountState.getAccount);
 
   constructor(
@@ -26,6 +30,7 @@ export class CreditCardFormComponent {
     private fb: FormBuilder,
     private creditCardService: CreditCardService,
     private store: Store,
+    private route: ActivatedRoute,
   ) {
     this.fb = fb;
     this.creditCardService = creditCardService;
@@ -45,7 +50,7 @@ export class CreditCardFormComponent {
     };
 
     this.creditCardService.add(creditCard).subscribe(() => {
-      this.router.navigate(['/account/payment-methods']);
+      this.router.navigate([this.redirectUrl]);
     });
   }
 }
