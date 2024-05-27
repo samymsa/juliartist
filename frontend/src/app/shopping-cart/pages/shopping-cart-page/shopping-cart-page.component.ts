@@ -19,8 +19,10 @@ export class ShoppingCartPageComponent {
   @Select(ShoppingCartState.getTotalQuantity)
   declare totalQuantity$: Observable<number>;
 
+  minQuantity = 0;
+  maxQuantity = 99;
+
   constructor(private store: Store) {}
-  n: number = NaN;
 
   incrementQuantity(item: ShoppingCartItem): void {
     this.updateQuantity(item, item.quantity + 1);
@@ -31,6 +33,7 @@ export class ShoppingCartPageComponent {
   }
 
   updateQuantity(item: ShoppingCartItem, quantity: number): void {
+    quantity = Math.min(this.maxQuantity, Math.max(this.minQuantity, quantity));
     this.store.dispatch(new UpdateQuantity({ item, quantity }));
   }
 }
