@@ -33,11 +33,28 @@
             </div>
           </td>
           <td>
-            <div class="flex items-center gap-4">
-              {{ item.quantity }}
-              <shopping-cart-remove
-                [product]="item.product"
-              ></shopping-cart-remove>
+            <div class="join">
+              <button
+                class="btn join-item input-bordered"
+                (click)="decrementQuantity(item)"
+              >
+                -
+              </button>
+              <input
+                class="input join-item input-bordered w-12 pl-0 text-center text-sm"
+                type="number"
+                [value]="item.quantity"
+                min="0"
+                max="99"
+                #quantityInput
+                (blur)="updateQuantity(item, quantityInput.valueAsNumber)"
+              />
+              <button
+                class="btn join-item input-bordered"
+                (click)="incrementQuantity(item)"
+              >
+                +
+              </button>
             </div>
           </td>
           <td>
