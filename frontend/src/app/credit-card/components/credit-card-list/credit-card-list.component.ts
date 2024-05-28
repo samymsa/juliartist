@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
 import { AccountState } from '../../../account/account.state';
 import { Account } from '../../../account/models/account';
 import { CreditCardService } from '../../services/credit-card.service';
@@ -8,20 +7,16 @@ import { CreditCardService } from '../../services/credit-card.service';
 @Component({
   selector: 'app-credit-card-list',
   templateUrl: './credit-card-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreditCardListComponent {
-  declare creditCards$: Observable<any>;
-
+  creditCards$ = this.creditCardService.getCreditCards();
   account = this.store.selectSnapshot<Account | null>(AccountState.getAccount);
 
   constructor(
     private creditCardService: CreditCardService,
     private store: Store,
   ) {}
-
-  ngOnInit() {
-    this.refresh();
-  }
 
   refresh() {
     this.creditCards$ = this.creditCardService.getCreditCards();

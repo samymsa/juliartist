@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
@@ -10,6 +10,7 @@ import { CreditCardService } from '../../services/credit-card.service';
 @Component({
   selector: 'app-credit-card-form',
   templateUrl: './credit-card-form.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
 })
 export class CreditCardFormComponent {
@@ -34,6 +35,7 @@ export class CreditCardFormComponent {
     private store: Store,
     private route: ActivatedRoute,
     protected fes: FormErrorService,
+    private cd: ChangeDetectorRef,
   ) {
     this.fb = fb;
     this.creditCardService = creditCardService;
@@ -61,6 +63,7 @@ export class CreditCardFormComponent {
       error: () => {
         this.form.setErrors({ unknown: true });
         this.loading = false;
+        this.cd.markForCheck();
       },
     });
   }
