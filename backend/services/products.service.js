@@ -4,9 +4,11 @@ function getProducts({ title, collection }) {
   return products.findAll({
     where: {
       ...(title && {
-        title: {
-          [Sequelize.Op.like]: `%${title.toLowerCase()}%`,
-        },
+        title: Sequelize.where(
+          Sequelize.fn("LOWER", Sequelize.col("title")),
+          "LIKE",
+          `%${title.toLowerCase()}%`
+        ),
       }),
       ...(collection && { collection }),
     },
