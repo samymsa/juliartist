@@ -11,20 +11,22 @@
       Vous n'avez pas encore enregistré de moyen de paiement.
     </p>
   } @else {
-    <table class="table table-lg">
-      <thead>
-        <tr>
-          <th>Numéro de carte</th>
-          <th>Nom du titulaire</th>
-          <th>Date d'expiration</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (card of creditCards$ | async; track card.number) {
-          <tr app-credit-card [card]="card" (delete)="refresh()"></tr>
-        }
-      </tbody>
-    </table>
+    <div class="overflow-x-auto">
+      <table class="table table-lg">
+        <thead>
+          <tr>
+            <th>Numéro de carte</th>
+            <th>Nom du titulaire</th>
+            <th>Date d'expiration</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (card of creditCards$ | async; track card.number) {
+            <tr app-credit-card [card]="card" (delete)="refresh()"></tr>
+          }
+        </tbody>
+      </table>
+    </div>
   }
 </div>
