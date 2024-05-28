@@ -78,6 +78,11 @@
   </button>
   <p class="text-sm">
     Pas encore de compte ?
-    <a class="link" [routerLink]="['/account/register']">Inscrivez-vous</a>
+    <a
+      class="link"
+      [routerLink]="['/account/register']"
+      [queryParams]="{ redirectUrl: redirectUrl }"
+      >Inscrivez-vous</a
+    >
   </p>
 </form>

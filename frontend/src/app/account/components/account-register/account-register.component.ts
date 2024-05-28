@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { FormErrorService } from '../../../core/services/form-error.service';
 import { SetAccount } from '../../account.actions';
@@ -18,10 +18,12 @@ export class AccountRegisterComponent {
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private router: Router,
+    private route: ActivatedRoute,
     private store: Store,
   ) {}
 
   loading = false;
+  redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/';
 
   form = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -61,7 +63,7 @@ export class AccountRegisterComponent {
     this.accountService.register(account).subscribe({
       next: (response) => {
         this.store.dispatch(new SetAccount(response.user));
-        this.router.navigate(['/']);
+        this.router.navigate([this.redirectUrl]);
       },
       error: (error) => {
         this.form.setErrors({ unknown: true });
