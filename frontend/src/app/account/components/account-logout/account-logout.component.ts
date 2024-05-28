@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { SetAccessToken, SetAccount } from '../../account.actions';
@@ -6,6 +6,7 @@ import { SetAccessToken, SetAccount } from '../../account.actions';
 @Component({
   selector: 'account-logout',
   templateUrl: './account-logout.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountLogoutComponent {
   constructor(

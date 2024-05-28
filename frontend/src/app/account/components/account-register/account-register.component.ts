@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
@@ -11,6 +11,7 @@ import { passwordMatchValidator } from '../../validators/password-match.validato
 @Component({
   selector: 'account-register',
   templateUrl: './account-register.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountRegisterComponent {
   constructor(
@@ -20,6 +21,7 @@ export class AccountRegisterComponent {
     private router: Router,
     private route: ActivatedRoute,
     private store: Store,
+    private cd: ChangeDetectorRef,
   ) {}
 
   loading = false;
@@ -68,6 +70,7 @@ export class AccountRegisterComponent {
       error: (error) => {
         this.form.setErrors({ unknown: true });
         this.loading = false;
+        this.cd.markForCheck();
       },
     });
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
@@ -10,6 +10,7 @@ import { AccountService } from '../../services/account.service';
 @Component({
   selector: 'account-login',
   templateUrl: './account-login.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountLoginComponent {
   constructor(
@@ -19,6 +20,7 @@ export class AccountLoginComponent {
     private router: Router,
     private route: ActivatedRoute,
     private store: Store,
+    private cd: ChangeDetectorRef,
   ) {}
 
   loading = false;
@@ -49,6 +51,7 @@ export class AccountLoginComponent {
       error: (error) => {
         this.loginForm.setErrors({ invalidCredentials: true });
         this.loading = false;
+        this.cd.markForCheck();
       },
     });
   }

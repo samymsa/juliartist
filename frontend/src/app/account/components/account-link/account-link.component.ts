@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AccountState } from '../../account.state';
@@ -6,6 +6,7 @@ import { AccountState } from '../../account.state';
 @Component({
   selector: 'account-link',
   templateUrl: './account-link.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountLinkComponent {
   @Select(AccountState.isAuthenticated)
@@ -13,13 +14,13 @@ export class AccountLinkComponent {
   declare dataTip: string;
   declare routerLink: string;
 
-  constructor(private cdRef: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.isAuthenticated$.subscribe((isAuthenticated) => {
       this.dataTip = isAuthenticated ? 'Mon compte' : 'Se connecter';
       this.routerLink = isAuthenticated ? '/account' : '/account/login';
-      this.cdRef.detectChanges();
+      this.cd.detectChanges();
     });
   }
 }

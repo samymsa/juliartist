@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -11,6 +11,7 @@ import { AccountService } from '../../services/account.service';
 @Component({
   selector: 'account-details',
   templateUrl: './account-details.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountDetailsComponent {
   constructor(
@@ -18,6 +19,7 @@ export class AccountDetailsComponent {
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private store: Store,
+    private cd: ChangeDetectorRef,
   ) {}
 
   loading = false;
@@ -62,11 +64,14 @@ export class AccountDetailsComponent {
         this.success = true;
         setTimeout(() => {
           this.success = false;
+          this.cd.markForCheck();
         }, 2000);
+        this.cd.markForCheck();
       },
       error: (error) => {
         this.form.setErrors({ unknown: true });
         this.loading = false;
+        this.cd.markForCheck();
       },
     });
   }
