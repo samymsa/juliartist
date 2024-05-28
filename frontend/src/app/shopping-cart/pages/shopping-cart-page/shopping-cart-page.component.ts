@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ShoppingCartItem } from '../../models/shopping-cart-item';
@@ -8,6 +8,7 @@ import { ShoppingCartState } from '../../shopping-cart.state';
 @Component({
   selector: 'shopping-cart-page',
   templateUrl: './shopping-cart-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShoppingCartPageComponent {
   @Select(ShoppingCartState.getItems)
