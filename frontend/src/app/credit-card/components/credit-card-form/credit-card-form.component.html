@@ -4,6 +4,11 @@
   (ngSubmit)="onSubmit()"
 >
   <h1 class="text-xl font-bold">Ajouter une carte</h1>
+
+  @if (fes.getMessage(form, "")) {
+    <small class="text-error">{{ fes.getMessage(form, "") }}</small>
+  }
+
   <input
     type="text"
     class="input input-bordered w-full"
@@ -45,7 +50,11 @@
     [disabled]="form.invalid"
     class="btn btn-primary w-full"
   >
-    Ajouter
+    @if (loading) {
+      <span class="loading loading-dots"></span>
+    } @else {
+      Ajouter
+    }
   </button>
   <a [routerLink]="[redirectUrl]" class="btn btn-outline w-full">Retour</a>
 </form>

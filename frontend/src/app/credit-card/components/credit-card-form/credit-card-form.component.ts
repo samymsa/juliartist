@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { AccountState } from '../../../account/account.state';
 import { Account } from '../../../account/models/account';
+import { FormErrorService } from '../../../core/services/form-error.service';
 import { CreditCardService } from '../../services/credit-card.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class CreditCardFormComponent {
     ccv: ['', [Validators.required, Validators.pattern('\\d{3}')]],
   });
 
+  loading = false;
   redirectUrl =
     this.route.snapshot.queryParams['redirectUrl'] ||
     '/account/payment-methods';
@@ -31,6 +33,7 @@ export class CreditCardFormComponent {
     private creditCardService: CreditCardService,
     private store: Store,
     private route: ActivatedRoute,
+    protected fes: FormErrorService,
   ) {
     this.fb = fb;
     this.creditCardService = creditCardService;
@@ -41,6 +44,8 @@ export class CreditCardFormComponent {
       return;
     }
 
+    this.loading = true;
+
     const creditCard = {
       userId: this.account?.id || '',
       name: this.form.get('name')?.value || '',
@@ -49,8 +54,14 @@ export class CreditCardFormComponent {
       ccv: this.form.get('ccv')?.value || '',
     };
 
-    this.creditCardService.add(creditCard).subscribe(() => {
-      this.router.navigate([this.redirectUrl]);
+    this.creditCardService.add(creditCard).subscribe({
+      next: () => {
+        this.router.navigate([this.redirectUrl]);
+      },
+      error: () => {
+        this.form.setErrors({ unknown: true });
+        this.loading = false;
+      },
     });
   }
 }
