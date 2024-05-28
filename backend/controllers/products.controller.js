@@ -8,7 +8,11 @@ function getProducts(req, res) {
 
 function getCollections(req, res) {
   productsService.getCollections().then((collections) => {
-    res.send(collections.map((collection) => collection.toJSON().collection));
+    res.send(
+      collections
+        .map((collection) => collection.toJSON().collection)
+        .sort((a, b) => a.localeCompare(b))
+    );
   });
 }
 
