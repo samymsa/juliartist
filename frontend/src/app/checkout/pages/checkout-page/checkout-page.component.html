@@ -174,7 +174,7 @@
   <button
     type="submit"
     class="btn btn-primary w-full hover:bg-transparent hover:text-secondary-content"
-    [disabled]="form.invalid || loading"
+    [disabled]="form.invalid || loading || (totalQuantity$ | async) === 0"
   >
     @if (loading) {
       <span class="loading loading-dots"></span>

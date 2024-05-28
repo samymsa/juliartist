@@ -1,4 +1,10 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -6,11 +12,13 @@ import { AccountState } from '../../../account/account.state';
 import { FormErrorService } from '../../../core/services/form-error.service';
 import { CreditCardService } from '../../../credit-card/services/credit-card.service';
 import { ClearCart } from '../../../shopping-cart/shopping-cart.actions';
+import { ShoppingCartState } from '../../../shopping-cart/shopping-cart.state';
 import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
   selector: 'checkout-page',
   templateUrl: './checkout-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckoutPageComponent {
   constructor(
@@ -19,6 +27,7 @@ export class CheckoutPageComponent {
     protected fes: FormErrorService,
     private checkoutService: CheckoutService,
     private creditCardService: CreditCardService,
+    private cd: ChangeDetectorRef,
   ) {}
 
   loading = false;
@@ -43,6 +52,9 @@ export class CheckoutPageComponent {
   @Select(AccountState.getAccount)
   declare account$: Observable<any>;
 
+  @Select(ShoppingCartState.getTotalQuantity)
+  declare totalQuantity$: Observable<number>;
+
   ngOnInit(): void {
     this.account$.subscribe((account) => {
       this.form.patchValue({
@@ -64,10 +76,12 @@ export class CheckoutPageComponent {
         this.store.dispatch(new ClearCart());
         this.loading = false;
         this.successModal.nativeElement.showModal();
+        this.cd.markForCheck();
       },
       error: (e) => {
         this.mainErrorMessage = this.fes.getErrorMessage(e.error.message);
         this.loading = false;
+        this.cd.markForCheck();
       },
     });
   }
