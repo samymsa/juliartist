@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import {
   Observable,
@@ -16,6 +16,7 @@ import { ProductsService } from '../../services/products.service';
 @Component({
   selector: 'products-page',
   templateUrl: './products-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsPageComponent {
   products$: Observable<Product[]>;
