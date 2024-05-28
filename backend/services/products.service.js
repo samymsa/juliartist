@@ -5,7 +5,7 @@ function getProducts({ title, collection }) {
     where: {
       ...(title && {
         title: {
-          [Sequelize.Op.like]: `%${title}%`,
+          [Sequelize.Op.like]: `%${title.toLowerCase()}%`,
         },
       }),
       ...(collection && { collection }),
