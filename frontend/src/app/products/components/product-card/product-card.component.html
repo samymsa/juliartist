@@ -3,8 +3,8 @@
 >
   <figure class="px-10 pt-10">
     <img
-      src="https://picsum.photos/seed/{{ product.id }}/300"
-      alt="Shoes"
+      [src]="product.image"
+      alt="{{ product.title }}"
       class="aspect-square rounded-xl object-scale-down"
     />
   </figure>

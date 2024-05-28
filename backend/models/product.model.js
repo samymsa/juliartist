@@ -18,6 +18,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.DECIMAL(10, 2),
       allowNull: false,
     },
+    image: {
+      type: Sequelize.TEXT,
+      allowNull: false,
+    },
   });
 
   return Product;
