@@ -8,23 +8,24 @@ function generateAccessToken(user) {
 
 function login(req, res) {
   const user = req.body;
-  usersService.getUserByEmail(user.email).then((fullUser) => {
-    if (!fullUser || fullUser.password !== user.password) {
-      return res.status(401).send({
-        error: "Invalid email or password",
+  usersService
+    .checkUserCredentials(user)
+    .then((fullUser) => {
+      const accessToken = generateAccessToken({
+        id: fullUser.id,
+        email: fullUser.email,
       });
-    }
 
-    const accessToken = generateAccessToken({
-      id: fullUser.id,
-      email: fullUser.email,
+      res.setHeader("Authorization", `Bearer ${accessToken}`);
+      res.send({
+        user: fullUser,
+      });
+    })
+    .catch((err) => {
+      res.status(401).send({
+        error: err.message,
+      });
     });
-
-    res.setHeader("Authorization", `Bearer ${accessToken}`);
-    res.send({
-      user: fullUser,
-    });
-  });
 }
 
 function register(req, res) {

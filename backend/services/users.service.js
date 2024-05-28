@@ -1,7 +1,27 @@
 const { users } = require("../models");
+const bcrypt = require("bcrypt");
 
 function createUser(user) {
-  return users.create(user);
+  return users.create({
+    ...user,
+    password: bcrypt.hashSync(user.password, 10),
+  });
+}
+
+function checkUserCredentials(user) {
+  return users
+    .findOne({
+      where: {
+        email: user.email,
+      },
+    })
+    .then((fullUser) => {
+      if (!fullUser || !bcrypt.compareSync(user.password, fullUser.password)) {
+        return Promise.reject(new Error("Invalid email or password"));
+      }
+
+      return fullUser;
+    });
 }
 
 function updateUser(user) {
@@ -16,17 +36,9 @@ function getUserById(id) {
   return users.findByPk(id);
 }
 
-function getUserByEmail(email) {
-  return users.findOne({
-    where: {
-      email,
-    },
-  });
-}
-
 module.exports = {
   createUser,
   updateUser,
   getUserById,
-  getUserByEmail,
+  checkUserCredentials,
 };
