@@ -3,7 +3,7 @@
 >
   <figure class="px-10 pt-10">
     <img
-      [src]="product.image"
+      src="https://picsum.photos/seed/{{ product.id }}/400"
       alt="{{ product.title }}"
       class="aspect-square rounded-xl object-scale-down"
     />
@@ -16,7 +16,7 @@
       </p>
     </hgroup>
     <footer class="card-actions items-center justify-between">
-      <p>{{ product.price | currency: "EUR" }}</p>
+      <p>{{ 39.99 | currency: "EUR" }}</p>
       <shopping-cart-add [product]="product"></shopping-cart-add>
     </footer>
   </div>

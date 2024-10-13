@@ -1,5 +1,8 @@
 export const environment = {
   production: false,
+  api: {
+    products: '/assets/mocks/products.json',
+  },
   backendAuth: {
     login: '/api/auth/login',
     register: '/api/auth/register',

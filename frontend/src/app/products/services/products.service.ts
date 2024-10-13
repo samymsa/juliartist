@@ -9,7 +9,7 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getProducts(query: any): Observable<Product[]> {
-    return this.http.get<Product[]>(environment.backendProducts, {
+    return this.http.get<Product[]>(environment.api.products, {
       params: query,
     });
   }
