@@ -1,4 +1,4 @@
-const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
 
 function checkJwt(req, res, next) {
@@ -9,7 +9,7 @@ function checkJwt(req, res, next) {
     return res.sendStatus(401);
   }
 
-  jwt.verify(token, ACCESS_TOKEN_SECRET, (err, jwtUser) => {
+  jwt.verify(token, JWT_SECRET, (err, jwtUser) => {
     if (err) {
       return res.sendStatus(403);
     }

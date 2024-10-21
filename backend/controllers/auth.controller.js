@@ -1,9 +1,9 @@
-const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
 const usersService = require("../services/users.service");
 
 function generateAccessToken(user) {
-  return jwt.sign(user, ACCESS_TOKEN_SECRET, { expiresIn: "365d" });
+  return jwt.sign(user, JWT_SECRET, { expiresIn: "365d" });
 }
 
 function login(req, res) {
