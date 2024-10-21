@@ -3,33 +3,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const https = require("https");
-
     const baseUrl = "https://graph.instagram.com/me/media";
     const fields = "id,caption,media_url";
     const limit = 100;
     const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
     const url = `${baseUrl}?fields=${fields}&limit=${limit}&access_token=${accessToken}`;
 
-    https.get(url, (response) => {
-      let data = "";
+    const response = await fetch(url);
+    const data = await response.json();
+    const products = data.data.map((item) => ({
+      id: item.id,
+      title: extractTitle(item),
+      collection: extractCollection(item),
+      price: 39.99,
+      image: item.media_url,
+    }));
 
-      response.on("data", (chunk) => {
-        data += chunk;
-      });
-
-      response.on("end", () => {
-        const products = JSON.parse(data).data.map((item) => ({
-          id: item.id,
-          title: extractTitle(item),
-          collection: extractCollection(item),
-          price: 39.99,
-          image: item.media_url,
-        }));
-
-        queryInterface.bulkInsert("Products", products, {});
-      });
-    });
+    return queryInterface.bulkInsert("Products", products, {});
   },
 
   async down(queryInterface, Sequelize) {
