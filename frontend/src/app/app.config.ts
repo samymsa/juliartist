@@ -34,7 +34,7 @@ export const appConfig: ApplicationConfig = {
         developmentMode: !environment.production,
       }),
       NgxsStoragePluginModule.forRoot({
-        key: ShoppingCartState,
+        keys: [ShoppingCartState],
       }),
     ),
   ],
