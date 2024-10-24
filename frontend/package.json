@@ -20,6 +20,8 @@
     "@angular/router": "^18.2.9",
     "@ngxs/storage-plugin": "^18.1.4",
     "@ngxs/store": "^18.1.4",
+    "@omnedia/ngx-gradient-text": "^1.0.0",
+    "@omnedia/ngx-particles": "^1.1.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"

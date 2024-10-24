@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { NgxGradientTextComponent } from '@omnedia/ngx-gradient-text';
+import { NgxParticlesComponent } from '@omnedia/ngx-particles';
 import { AccountModule } from '../account/account.module';
 import { ShoppingCartModule } from '../shopping-cart/shopping-cart.module';
 import { FooterComponent } from './components/footer/footer.component';
@@ -16,7 +18,13 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     FooterComponent,
     MainComponent,
   ],
-  imports: [CoreRoutingModule, AccountModule, ShoppingCartModule],
+  imports: [
+    CoreRoutingModule,
+    AccountModule,
+    ShoppingCartModule,
+    NgxParticlesComponent,
+    NgxGradientTextComponent,
+  ],
   exports: [NavbarComponent, FooterComponent, MainComponent],
 })
 export class CoreModule {}

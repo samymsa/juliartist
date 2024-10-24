@@ -1,18 +1,25 @@
-<div class="hero h-screen">
-  <div class="hero-content text-center">
-    <div>
-      <h1 class="my-4 text-6xl font-bold">
-        Les dessins de <span class="font-logo font-normal">JuliArtist</span>
-      </h1>
-      <p class="text-xl font-light italic text-neutral">
-        Vos personnages favoris dans un style unique
-      </p>
-      <a
-        [routerLink]="['/products']"
-        class="btn btn-primary my-12 hover:bg-transparent hover:text-secondary-content"
-      >
-        Voir les dessins
-      </a>
+<om-particles [size]="2" circleColor="#E35D66">
+  <div class="hero h-screen">
+    <div class="hero-content text-center">
+      <div>
+        <h1 class="my-4 text-6xl font-bold">
+          Les dessins de
+          <om-gradient-text
+            [text]="'JuliArtist'"
+            class="font-logo font-normal"
+            gradientEnd="#E35D66"
+          ></om-gradient-text>
+        </h1>
+        <p class="text-xl font-light italic text-neutral">
+          Vos personnages favoris dans un style unique
+        </p>
+        <a
+          [routerLink]="['/products']"
+          class="btn btn-primary my-12 hover:bg-transparent hover:text-secondary-content"
+        >
+          Voir les dessins
+        </a>
+      </div>
     </div>
   </div>
-</div>
+</om-particles>
